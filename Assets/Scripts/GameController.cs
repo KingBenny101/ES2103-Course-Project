@@ -9,24 +9,23 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     GameObject panel;
-    GameObject grid;
-
-    public GameObject gridChild;
-    public int gridChildCount;
+    public GameObject PowerPlant;
+    public Transform Main;
 
     public void Start(){
         panel = GameObject.Find("Panel");
-        grid = GameObject.Find("Grid");
         panel.SetActive(false);
 
 
-        
-        for(int i = 1; i < gridChildCount;i++){
-            Debug.Log($"Creating Object {i}");
-            GameObject gc = Instantiate(gridChild);
-            //decimal.transform.parent = grid.transform;
-        }
     }
+
+
+    public void CreateNewPowerPlant(){
+        GameObject go  = GameObject.Instantiate(PowerPlant);
+        go.transform.SetParent(Main);
+    }
+
+
     public void PauseGame(){
         Debug.Log("Pausing Game.");
         Time.timeScale = 0;
