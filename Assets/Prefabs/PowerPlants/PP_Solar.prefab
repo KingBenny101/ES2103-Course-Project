@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4169015404221478670}
   - component: {fileID: 4169015404221478657}
   m_Layer: 0
-  m_Name: PPchild
+  m_Name: PP_Solar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,8 +9,13 @@ public class Dragger : MonoBehaviour
     public Vector3 Max;
     public Vector3 Min;
 
+    public GameController GC;
+
+
+
     void OnMouseDown(){
         _dragOffset = transform.position - GetMousePos();
+        GC.LastSelected = this.gameObject;
     } 
 
     void OnMouseDrag() {
@@ -21,6 +26,7 @@ public class Dragger : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y,Min.y,Max.y);
 
         transform.position = pos;        
+        
     }
     
     Vector3 GetMousePos(){
