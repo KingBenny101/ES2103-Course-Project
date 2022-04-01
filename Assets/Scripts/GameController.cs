@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    GameObject panel;
+    public GameObject Panel;
     public GameObject PowerPlantSolar;
     public GameObject PowerPlantWind;
     public GameObject PowerPlantGeoThermal;
@@ -24,11 +24,11 @@ public class GameController : MonoBehaviour
 
     public void Start()
     {
-        if (panel != null)
+        if (Panel != null)
         {
 
-            panel = GameObject.Find("Panel");
-            panel.SetActive(false);
+            Panel = GameObject.Find("Panel");
+            Panel.SetActive(false);
 
         }
 
@@ -79,20 +79,22 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Pausing Game.");
         Time.timeScale = 0;
-        panel.SetActive(true);
+        Panel.SetActive(true);
+        Main.gameObject.SetActive(false);
     }
 
     public void ResumeGame()
     {
         Debug.Log("Resuming Game.");
         Time.timeScale = 1;
-        panel.SetActive(false);
+        Panel.SetActive(false);
+        Main.gameObject.SetActive(true);
     }
 
     public void ExitToMainMenu()
     {
         Debug.Log("Quitting to Main Menu.");
-        panel.SetActive(false);
+        Panel.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 
