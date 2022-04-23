@@ -24,7 +24,7 @@ public class Dragger : MonoBehaviour
 
 
 
-    
+
     void OnMouseDown()
     {
         _dragOffset = transform.position - GetMousePos();
@@ -33,8 +33,8 @@ public class Dragger : MonoBehaviour
     }
 
     void OnMouseDrag()
-    {   
-        
+    {
+
 
 
         Vector3 pos = GetMousePos() + _dragOffset;

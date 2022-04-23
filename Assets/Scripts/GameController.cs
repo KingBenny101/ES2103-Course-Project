@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
 
 
 
-    
+
 
     public void Start()
     {
@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
 
         }
 
-        MainGrid grid = new MainGrid(34,34,0.206250f,GridContainer);
+        MainGrid grid = new MainGrid(34, 34, 0.206250f, GridContainer);
 
     }
 
@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour
             go = GameObject.Instantiate(PowerPlantThermal);
         }
         go.transform.SetParent(Main);
-        go.transform.localScale = new Vector3(0.035F,0.035F,1);
+        go.transform.localScale = new Vector3(0.035F, 0.035F, 1);
         go.GetComponent<Dragger>().GC = GC;
         go.GetComponent<Dragger>().gridSize = GridContainer.GetComponent<SpriteRenderer>().bounds.size.x;
         go.GetComponent<Dragger>().gridCellCount = GridContainer.GetComponent<Dragger>().gridCellCount;
@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
         //go.GetComponent<Dragger>().Min.x = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x + GridContainer.GetComponent<Dragger>()._xOffsetMin;
         //go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + GridContainer.GetComponent<Dragger>()._yOffsetMin;        
 
-        go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x*0.5f;
+        go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x * 0.5f;
         go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;
 
     }

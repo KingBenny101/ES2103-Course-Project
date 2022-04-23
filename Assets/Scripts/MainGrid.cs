@@ -32,16 +32,16 @@ public class MainGrid
                 Vector3 lineEndY = new Vector3(gridStart.x + i * gridCellLength, gridStart.y + (j + 1) * gridCellLength, 0);
 
 
-                Debug.DrawLine(lineStart, lineEndX, Color.black, 100f);
-                Debug.DrawLine(lineStart, lineEndY, Color.black, 100f);
+                Draw.DrawLine(lineStart, lineEndX, Color.black, 0.01f);
+                Draw.DrawLine(lineStart, lineEndY, Color.black, 0.01f);
             }
         }
 
 
         Vector3 gridEndY = new Vector3(gridStart.x + gridArray.GetLength(0) * gridCellLength, gridStart.y + gridArray.GetLength(1) * gridCellLength, 0);
-        Debug.DrawLine(gridStart + new Vector3(gridArray.GetLength(0) * gridCellLength, 0, 0), gridEndY, Color.black, 100f);
+        Draw.DrawLine(gridStart + new Vector3(gridArray.GetLength(0) * gridCellLength, 0, 0), gridEndY, Color.black, 0.01f);
         Vector3 gridEndX = new Vector3(gridStart.x, gridStart.y + gridArray.GetLength(1) * gridCellLength, 0);
-        Debug.DrawLine(gridEndY, gridEndX, Color.black, 100f);
+        Draw.DrawLine(gridEndY, gridEndX, Color.black, 0.01f);
 
     }
 
