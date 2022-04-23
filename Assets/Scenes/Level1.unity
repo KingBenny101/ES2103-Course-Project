@@ -419,10 +419,10 @@ RectTransform:
   m_Father: {fileID: 490595960}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 359.9533, y: -415.0263}
+  m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347064365
 MonoBehaviour:
@@ -685,10 +685,10 @@ RectTransform:
   m_Father: {fileID: 490595960}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 359.9533, y: -665.0263}
+  m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440666833
 MonoBehaviour:
@@ -947,6 +947,8 @@ MonoBehaviour:
   Max: {x: 3.3, y: 3.88, z: 0}
   Min: {x: -3.3, y: -2.71, z: 0}
   GC: {fileID: 1409016642}
+  gridSize: 6.6
+  gridCellCount: 32
 --- !u!4 &717811905
 Transform:
   m_ObjectHideFlags: 0
@@ -1346,7 +1348,7 @@ GameObject:
   - component: {fileID: 1384966884}
   - component: {fileID: 1384966883}
   m_Layer: 5
-  m_Name: Grid
+  m_Name: GameGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1391,7 +1393,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6ae2fd2394dd08f409d9ff476251efa6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2638,7 +2640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1870286369
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2943,10 +2945,10 @@ RectTransform:
   m_Father: {fileID: 490595960}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 359.9533, y: -915.0263}
+  m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947498713
 MonoBehaviour:
@@ -3074,10 +3076,10 @@ RectTransform:
   m_Father: {fileID: 490595960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 359.9533, y: -165.0263}
+  m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1997244748
 MonoBehaviour:
@@ -3640,12 +3642,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8678332191570919302, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678332191570919302, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678332191570919302, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.502
       objectReference: {fileID: 0}
     - target: {fileID: 8678332191570919302, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.908
       objectReference: {fileID: 0}
     - target: {fileID: 8678332191570919302, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3683,5 +3693,21 @@ PrefabInstance:
       propertyPath: GC
       value: 
       objectReference: {fileID: 1409016642}
+    - target: {fileID: 8678332191570919303, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
+      propertyPath: gridSize
+      value: 6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678332191570919303, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
+      propertyPath: gridCellSize
+      value: 0.103125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678332191570919303, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
+      propertyPath: gridCellCount
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678332191570919305, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6246160581572741293, guid: f20390d614e202f4f81bf98eca2690ea, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16ed27399da471949a5bad89d0bf69d7, type: 3}

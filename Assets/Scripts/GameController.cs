@@ -22,15 +22,20 @@ public class GameController : MonoBehaviour
 
     public Transform Main;
 
+
+    
+
     public void Start()
     {
-        if (Panel != null)
-        {
+        // if (Panel != null)
+        // {
 
-            Panel = GameObject.Find("Panel");
-            Panel.SetActive(false);
+        //     Panel = GameObject.Find("Panel");
+        //     Panel.SetActive(false);
 
-        }
+        // }
+
+        MainGrid grid = new MainGrid(32,32,new Vector3(-3.3F,-2.7F,0F),0.206250f);
 
     }
 
