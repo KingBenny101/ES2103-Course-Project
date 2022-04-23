@@ -65,6 +65,8 @@ public class GameController : MonoBehaviour
         }
         go.transform.SetParent(Main);
         go.GetComponent<Dragger>().GC = GC;
+        go.GetComponent<Dragger>().gridSize = 6.6F;
+
     }
 
 

@@ -124,3 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Max: {x: 3.3, y: 3.9, z: 0}
   Min: {x: -3.3, y: -2.7, z: 0}
+  GC: {fileID: 0}
+  gridSize: 0
+  gridCellSize: 0

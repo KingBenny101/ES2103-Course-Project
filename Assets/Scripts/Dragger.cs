@@ -12,27 +12,42 @@ public class Dragger : MonoBehaviour
     public GameController GC;
 
 
+    public float gridSize;
+    public int gridCellCount;
 
-    void OnMouseDown(){
+
+
+    void OnMouseDown()
+    {
         _dragOffset = transform.position - GetMousePos();
         GC.LastSelected = this.gameObject;
-    } 
+    }
 
-    void OnMouseDrag() {
+    void OnMouseDrag()
+    {
 
         Vector3 pos = GetMousePos() + _dragOffset;
         Vector3 newPos = Vector3.zero;
-        pos.x = Mathf.Clamp(pos.x,Min.x,Max.x);
-        pos.y = Mathf.Clamp(pos.y,Min.y,Max.y);
+        pos.x = Mathf.Clamp(pos.x, Min.x, Max.x);
+        pos.y = Mathf.Clamp(pos.y, Min.y, Max.y);
 
-        transform.position = pos;        
-        
+        transform.position = pos;
+
+        float gridCellSize;
+        gridCellSize = gridSize / gridCellCount;
+
+        var currentPos = transform.position;
+        transform.position = new Vector3(Mathf.Round(currentPos.x / gridSize * gridCellCount) * gridCellSize,
+                                     Mathf.Round(currentPos.y / gridSize * gridCellCount) * gridCellSize,
+                                     currentPos.z);
+
     }
-    
-    Vector3 GetMousePos(){
+
+    Vector3 GetMousePos()
+    {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
-        
+
         return mousePos;
     }
 }
