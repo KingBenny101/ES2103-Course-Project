@@ -22,20 +22,24 @@ public class GameController : MonoBehaviour
 
     public Transform Main;
 
+    public GameObject GridContainer;
+
+
+
 
     
 
     public void Start()
     {
-        // if (Panel != null)
-        // {
+        if (Panel)
+        {
 
-        //     Panel = GameObject.Find("Panel");
-        //     Panel.SetActive(false);
+            Panel = GameObject.Find("Panel");
+            Panel.SetActive(false);
 
-        // }
+        }
 
-        MainGrid grid = new MainGrid(32,32,new Vector3(-3.3F,-2.7F,0F),0.206250f);
+        MainGrid grid = new MainGrid(34,34,0.206250f,GridContainer);
 
     }
 
@@ -69,9 +73,21 @@ public class GameController : MonoBehaviour
             go = GameObject.Instantiate(PowerPlantThermal);
         }
         go.transform.SetParent(Main);
+        go.transform.localScale = new Vector3(0.035F,0.035F,1);
         go.GetComponent<Dragger>().GC = GC;
-        go.GetComponent<Dragger>().gridSize = 6.6F;
-        go.GetComponent<Dragger>().gridCellCount = 32;
+        go.GetComponent<Dragger>().gridSize = GridContainer.GetComponent<SpriteRenderer>().bounds.size.x;
+        go.GetComponent<Dragger>().gridCellCount = GridContainer.GetComponent<Dragger>().gridCellCount;
+        go.GetComponent<Dragger>().GridContainer = GridContainer.GetComponent<SpriteRenderer>();
+
+        Vector3 _Offset = go.GetComponent<SpriteRenderer>().size;
+        //go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x + GridContainer.GetComponent<Dragger>()._xOffsetMax;
+        //go.GetComponent<Dragger>().Max.y = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + GridContainer.GetComponent<Dragger>()._yOffsetMax;
+
+        //go.GetComponent<Dragger>().Min.x = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x + GridContainer.GetComponent<Dragger>()._xOffsetMin;
+        //go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + GridContainer.GetComponent<Dragger>()._yOffsetMin;        
+
+        go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x*0.5f;
+        go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;
 
     }
 

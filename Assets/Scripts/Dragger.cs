@@ -11,20 +11,31 @@ public class Dragger : MonoBehaviour
 
     public GameController GC;
 
-
     public float gridSize;
     public int gridCellCount;
 
+    public SpriteRenderer GridContainer;
+
+    public float _xOffsetMax;
+    public float _yOffsetMax;
+    public float _xOffsetMin;
+    public float _yOffsetMin;
 
 
+
+
+    
     void OnMouseDown()
     {
         _dragOffset = transform.position - GetMousePos();
         GC.LastSelected = this.gameObject;
+
     }
 
     void OnMouseDrag()
-    {
+    {   
+        
+
 
         Vector3 pos = GetMousePos() + _dragOffset;
         Vector3 newPos = Vector3.zero;
@@ -32,6 +43,11 @@ public class Dragger : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, Min.y, Max.y);
 
         transform.position = pos;
+
+        //Debug.Log(-GridContainer.bounds.extents.x);
+        //Debug.Log(-GridContainer.bounds.extents.y);
+        //Debug.Log(GridContainer.bounds.size.x);
+
 
         float gridCellSize;
         gridCellSize = gridSize / gridCellCount;
