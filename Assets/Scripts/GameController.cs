@@ -23,10 +23,10 @@ public class GameController : MonoBehaviour
     public Transform Main;
 
     public GameObject GridContainer;
+    public GameObject scoreBoard;
 
 
-
-
+    private MainGrid grid;
 
 
     public void Start()
@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
 
         }
 
-        MainGrid grid = new MainGrid(34, 34, 0.206250f, GridContainer);
+        grid = new MainGrid(34, 34, 0.206250f, GridContainer);
 
     }
 
@@ -50,27 +50,39 @@ public class GameController : MonoBehaviour
         if (choice == 1)
         {
             go = GameObject.Instantiate(PowerPlantSolar);
+            go.GetComponent<Dragger>().powerPlantId = choice;
         }
 
         else if (choice == 2)
         {
             go = GameObject.Instantiate(PowerPlantWind);
+            go.GetComponent<Dragger>().powerPlantId = choice;
+
         }
         else if (choice == 3)
         {
             go = GameObject.Instantiate(PowerPlantGeoThermal);
+            go.GetComponent<Dragger>().powerPlantId = choice;
+
         }
         else if (choice == 4)
         {
             go = GameObject.Instantiate(PowerPlantHydro);
+            go.GetComponent<Dragger>().powerPlantId = choice;
+
         }
         else if (choice == 5)
         {
             go = GameObject.Instantiate(PowerPlantNuclear);
+            go.GetComponent<Dragger>().powerPlantId = choice;
+
+
         }
         else
         {
             go = GameObject.Instantiate(PowerPlantThermal);
+            go.GetComponent<Dragger>().powerPlantId = choice;
+
         }
         go.transform.SetParent(Main);
         go.transform.localScale = new Vector3(0.035F, 0.035F, 1);
@@ -78,13 +90,11 @@ public class GameController : MonoBehaviour
         go.GetComponent<Dragger>().gridSize = GridContainer.GetComponent<SpriteRenderer>().bounds.size.x;
         go.GetComponent<Dragger>().gridCellCount = GridContainer.GetComponent<Dragger>().gridCellCount;
         go.GetComponent<Dragger>().GridContainer = GridContainer.GetComponent<SpriteRenderer>();
+        go.GetComponent<Dragger>().grid = grid;
+        go.GetComponent<Dragger>().scoreBoard = scoreBoard;
 
-        Vector3 _Offset = go.GetComponent<SpriteRenderer>().size;
-        //go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x + GridContainer.GetComponent<Dragger>()._xOffsetMax;
-        //go.GetComponent<Dragger>().Max.y = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + GridContainer.GetComponent<Dragger>()._yOffsetMax;
 
-        //go.GetComponent<Dragger>().Min.x = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x + GridContainer.GetComponent<Dragger>()._xOffsetMin;
-        //go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + GridContainer.GetComponent<Dragger>()._yOffsetMin;        
+        Vector3 _Offset = go.GetComponent<SpriteRenderer>().size;        
 
         go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x * 0.5f;
         go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;
