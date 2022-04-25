@@ -954,6 +954,8 @@ MonoBehaviour:
   _yOffsetMax: 0
   _xOffsetMin: 0
   _yOffsetMin: 0
+  scoreBoard: {fileID: 0}
+  powerPlantId: 0
 --- !u!4 &717811905
 Transform:
   m_ObjectHideFlags: 0
@@ -1042,7 +1044,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.5235849, b: 0.5235849, a: 0.62352943}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1074,6 +1076,8 @@ MonoBehaviour:
   _yOffsetMax: 0.35
   _xOffsetMin: 0.35
   _yOffsetMin: 0.35
+  scoreBoard: {fileID: 0}
+  powerPlantId: 0
 --- !u!4 &825037974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1390953103440393124, guid: 81b41c739c9e0774da47bc76ccafba5b, type: 3}
@@ -1561,6 +1565,7 @@ MonoBehaviour:
   GC: {fileID: 1409016642}
   Main: {fileID: 799657758}
   GridContainer: {fileID: 799657757}
+  scoreBoard: {fileID: 147964402}
 --- !u!4 &1409016643
 Transform:
   m_ObjectHideFlags: 0
