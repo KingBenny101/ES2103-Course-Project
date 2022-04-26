@@ -24,11 +24,8 @@ public class GameController : MonoBehaviour
 
     public GameObject GridContainer;
     public GameObject scoreBoard;
-
-
+    public GameObject scoreBoardScore;
     private MainGrid grid;
-
-
     public void Start()
     {
         if (Panel)
@@ -39,7 +36,7 @@ public class GameController : MonoBehaviour
 
         }
 
-        grid = new MainGrid(34, 34, 0.206250f, GridContainer);
+        grid = new MainGrid(34, 34, 0.206250f, GridContainer,scoreBoardScore);
 
     }
 
@@ -55,36 +52,42 @@ public class GameController : MonoBehaviour
                 go.GetComponent<Dragger>().powerPlantId = choice;
                 pp = new PowerPlant(1,2,3,4);
                 go.GetComponent<Dragger>().PP = pp;
+                this.grid.SCORE.addPowerPlant(pp);
                 break;
             case 2:
                 go = Instantiate(PowerPlantWind);
                 go.GetComponent<Dragger>().powerPlantId = choice;
                 pp = new PowerPlant(5,6,7,8);
                 go.GetComponent<Dragger>().PP = pp;
+                this.grid.SCORE.addPowerPlant(pp);
                 break;
             case 3:
                 go = Instantiate(PowerPlantGeoThermal);
                 go.GetComponent<Dragger>().powerPlantId = choice;
                 pp = new PowerPlant(9,10,11,12);
                 go.GetComponent<Dragger>().PP = pp;
+                this.grid.SCORE.addPowerPlant(pp);
                 break;
             case 4:
                 go = Instantiate(PowerPlantHydro);
                 go.GetComponent<Dragger>().powerPlantId = choice;
                 pp = new PowerPlant(13,14,15,16);
                 go.GetComponent<Dragger>().PP = pp;
+                this.grid.SCORE.addPowerPlant(pp);
                 break;
             case 5:
                 go = Instantiate(PowerPlantNuclear);
                 go.GetComponent<Dragger>().powerPlantId = choice;
                 pp = new PowerPlant(17,18,19,20);
                 go.GetComponent<Dragger>().PP = pp;
+                this.grid.SCORE.addPowerPlant(pp);
                 break;
             default:
                 go = Instantiate(PowerPlantThermal);
                 go.GetComponent<Dragger>().powerPlantId = choice;
                 pp = new PowerPlant(21,22,23,24);
                 go.GetComponent<Dragger>().PP = pp;
+                this.grid.SCORE.addPowerPlant(pp);
                 break;
         }
         go.transform.SetParent(Main);
@@ -101,12 +104,15 @@ public class GameController : MonoBehaviour
 
         go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x * 0.5f;
         go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;
-
+        
+        var pps = go.GetComponent<Dragger>();
+        pps.setAndUpdatePP();
     }
 
 
     public void DeletePowerPlant()
-    {
+    {   
+
         Destroy(LastSelected);
         LastSelected = null;
     }

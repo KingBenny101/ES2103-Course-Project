@@ -13,6 +13,13 @@ public class PowerPlant
         this.EMISSION = emission;
     }
 
+    public void setPowerPlantValues(float cost , float area, float energy, float emission) {
+        this.COST = cost;
+        this.AREA = area;
+        this.ENERGY = energy;
+        this.EMISSION = emission;
+    }
+
     
 
 

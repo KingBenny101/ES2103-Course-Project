@@ -60,5 +60,8 @@ public class PowerPlantDetailsController
 
         string score = $@"Current Region : {inx}{n}PowerPlant Type : {ppType}{n}PowerPlant Energy : {pp.ENERGY}{n}PowerPlant Area : {pp.AREA}{n}PowerPlant Cost : {pp.COST}{n}PowerPlant Emission : {pp.EMISSION}";
         scoreBoardText.GetComponent<UnityEngine.UI.Text>().text = score;
+
+        GameObject scoreBoardScore = this.GRID.SCOREBOARD_SCORE.transform.GetChild(0).gameObject;
+        scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text = this.GRID.SCORE.calculateScore().ToString();
     }
 }

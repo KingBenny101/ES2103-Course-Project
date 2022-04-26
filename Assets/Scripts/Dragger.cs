@@ -65,7 +65,7 @@ public class Dragger : MonoBehaviour
         return mousePos;
     }
 
-    void setAndUpdatePP(){
+    public void setAndUpdatePP(){
         
         PowerPlantDetailsController ppdc = new PowerPlantDetailsController(grid,scoreBoard);
         grid.SelectedPowerPlant = powerPlantId;
