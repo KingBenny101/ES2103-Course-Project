@@ -71,44 +71,44 @@ public class MainGrid
         cy = 0f;
         if (x > originPosition.x + width / 2 || x < originPosition.x - width / 2 || y > originPosition.y + width / 2 || y < originPosition.y - width / 2)
             return false;
-        if (rNo == 1)
+        switch (rNo)
         {
-            cy = Mathf.Sin((x / 2) + 4) + 3f;
-            if (y >= cy)
-            {
+            case 1:
+                cy = Mathf.Sin(x / 2 + 4) + 3f;
+                if (y >= cy)
+                {
+                    return true;
+                }
+                break;
+            case 2:
+                cy = Mathf.Sin(x / 2 + 4) + 2f;
+                if (y >= cy)
+                {
+                    return true;
+                }
+                break;
+            case 3:
+                cy = 1.5f * (1 - Mathf.Exp(-1f * (x + 3.5f)));
+                if (y >= cy)
+                {
+                    return true;
+                }
+                break;
+            case 4:
+                cy = -x * Mathf.Cos(x) - 2;
+                if (y >= cy)
+                {
+                    return true;
+                }
+                break;
+            case 5:
                 return true;
-            }
-        }
-        else if (rNo == 2)
-        {
-            cy = Mathf.Sin((x / 2) + 4) + 2f;
-            if (y >= cy)
-            {
-                return true;
-            }
-        }
-        else if (rNo == 3)
-        {
-            cy = 1.5f * (1 - Mathf.Exp(-1f * (x + 3.5f)));
-            if (y >= cy)
-            {
-                return true;
-            }
-        }
-        else if (rNo == 4)
-        {
-            cy = -x * Mathf.Cos(x) - 2;
-            if (y >= cy)
-            {
-                return true;
-            }
-        }
-        else if (rNo == 5)
-        {
-            return true;
         }
         return false;
     }
 
+    public int getColorSize(){
+        return this.regionColours.GetLength(0);
+    }
 
 }

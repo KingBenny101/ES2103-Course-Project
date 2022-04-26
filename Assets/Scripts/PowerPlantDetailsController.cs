@@ -14,13 +14,13 @@ public class PowerPlantDetailsController
         this.SCOREBOARD = scoreBoard;
     }
 
-    public void updateScoreBoard(PowerPlant pp)
+    public void updateScoreBoard(PowerPlant pp,Vector3 curLoc)
     {
         GameObject scoreBoardText = this.SCOREBOARD.transform.GetChild(0).gameObject;
         var id = this.GRID.SelectedPowerPlant;
 
         var ppType = "Empty";
-
+        var n = '\n';
 
         switch (id)
         {
@@ -48,12 +48,17 @@ public class PowerPlantDetailsController
                 ppType = "Nuclear";
                 break;
         }
-        string score = $@"
-        PowerPlant Type : {ppType}\n
-        PowerPlant Energy : {pp.ENERGY}\n
-        PowerPlant Area : {pp.AREA}\n
-        PowerPlant Cost : {pp.COST}\n
-        PowerPlant Emission : {pp.EMISSION}";
+        int inx;
+        inx = 5;
+        for(int c= 0; c<this.GRID.getColorSize();c++){
+            if(this.GRID.isInsideRegion(curLoc,c+1)){
+                inx = c;
+                break;
+            }
+        }
+
+
+        string score = $@"Current Region : {inx}{n}PowerPlant Type : {ppType}{n}PowerPlant Energy : {pp.ENERGY}{n}PowerPlant Area : {pp.AREA}{n}PowerPlant Cost : {pp.COST}{n}PowerPlant Emission : {pp.EMISSION}";
         scoreBoardText.GetComponent<UnityEngine.UI.Text>().text = score;
     }
 }
