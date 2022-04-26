@@ -47,42 +47,38 @@ public class GameController : MonoBehaviour
     public void CreateNewPowerPlant(int choice)
     {
         GameObject go;
-        if (choice == 1)
+        switch (choice)
         {
-            go = GameObject.Instantiate(PowerPlantSolar);
-            go.GetComponent<Dragger>().powerPlantId = choice;
-        }
+            case 1:
+                go = Instantiate(PowerPlantSolar);
+                go.GetComponent<Dragger>().powerPlantId = choice;
+                break;
+            case 2:
+                go = Instantiate(PowerPlantWind);
+                go.GetComponent<Dragger>().powerPlantId = choice;
 
-        else if (choice == 2)
-        {
-            go = GameObject.Instantiate(PowerPlantWind);
-            go.GetComponent<Dragger>().powerPlantId = choice;
+                break;
+            case 3:
+                go = Instantiate(PowerPlantGeoThermal);
+                go.GetComponent<Dragger>().powerPlantId = choice;
 
-        }
-        else if (choice == 3)
-        {
-            go = GameObject.Instantiate(PowerPlantGeoThermal);
-            go.GetComponent<Dragger>().powerPlantId = choice;
+                break;
+            case 4:
+                go = Instantiate(PowerPlantHydro);
+                go.GetComponent<Dragger>().powerPlantId = choice;
 
-        }
-        else if (choice == 4)
-        {
-            go = GameObject.Instantiate(PowerPlantHydro);
-            go.GetComponent<Dragger>().powerPlantId = choice;
-
-        }
-        else if (choice == 5)
-        {
-            go = GameObject.Instantiate(PowerPlantNuclear);
-            go.GetComponent<Dragger>().powerPlantId = choice;
+                break;
+            case 5:
+                go = Instantiate(PowerPlantNuclear);
+                go.GetComponent<Dragger>().powerPlantId = choice;
 
 
-        }
-        else
-        {
-            go = GameObject.Instantiate(PowerPlantThermal);
-            go.GetComponent<Dragger>().powerPlantId = choice;
+                break;
+            default:
+                go = Instantiate(PowerPlantThermal);
+                go.GetComponent<Dragger>().powerPlantId = choice;
 
+                break;
         }
         go.transform.SetParent(Main);
         go.transform.localScale = new Vector3(0.035F, 0.035F, 1);
@@ -94,7 +90,7 @@ public class GameController : MonoBehaviour
         go.GetComponent<Dragger>().scoreBoard = scoreBoard;
 
 
-        Vector3 _Offset = go.GetComponent<SpriteRenderer>().size;        
+        Vector3 _Offset = go.GetComponent<SpriteRenderer>().size;
 
         go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x * 0.5f;
         go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;

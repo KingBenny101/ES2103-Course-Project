@@ -32,7 +32,8 @@ public class Dragger : MonoBehaviour
         GC.LastSelected = this.gameObject;
         PowerPlantDetailsController ppdc = new PowerPlantDetailsController(grid,scoreBoard);
         grid.SelectedPowerPlant = powerPlantId;
-        ppdc.updateScoreBoard();
+        PowerPlant p = new PowerPlant(0,0,0,0);
+        ppdc.updateScoreBoard(p);
 
 
     }
