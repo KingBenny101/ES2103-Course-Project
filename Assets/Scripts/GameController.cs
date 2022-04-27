@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour
     public GameObject scoreBoard;
     public GameObject scoreBoardScore;
     private MainGrid grid;
+
+    public Sprite SOLAR_IM,HYDRO_IM, WIND_IM, GEOTHERMAL_IM,NUCLEAR_IM,THERMAL_IM;
+
     public void Start()
     {
         if (Panel)
@@ -36,7 +39,15 @@ public class GameController : MonoBehaviour
 
         }
 
-        grid = new MainGrid(34, 34, 0.206250f, GridContainer,scoreBoardScore);
+        Sprite[] S = new Sprite[6];
+        S[0] = this.SOLAR_IM;
+        S[1] = this.WIND_IM;
+        S[2] = this.GEOTHERMAL_IM;
+        S[3] = this.HYDRO_IM;
+        S[4] = this.THERMAL_IM;
+        S[5] = this.NUCLEAR_IM;
+
+        grid = new MainGrid(34, 34, 0.206250f, GridContainer,scoreBoardScore,S);
 
     }
 

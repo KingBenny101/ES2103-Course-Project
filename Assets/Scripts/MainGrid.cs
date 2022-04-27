@@ -13,9 +13,12 @@ public class MainGrid
     private Color[] regionColours;
     public int SelectedPowerPlant = -1;
     public Score SCORE;
-
     public GameObject SCOREBOARD_SCORE;
-    public MainGrid(int width, int height, float gridCellLength, GameObject gridContainer, GameObject scoreBoardScore)
+
+    public Sprite SOLAR_IM,HYDRO_IM, WIND_IM, GEOTHERMAL_IM,NUCLEAR_IM,THERMAL_IM;
+
+
+    public MainGrid(int width, int height, float gridCellLength, GameObject gridContainer, GameObject scoreBoardScore, Sprite[] IM)
     {
         this.width = width;
         this.height = height;
@@ -65,6 +68,14 @@ public class MainGrid
         Draw.DrawLine(gridEndY, gridEndX, Color.black, 0.01f);
         this.SCORE = new Score(10f);
         this.SCOREBOARD_SCORE =scoreBoardScore;
+
+        this.SOLAR_IM = IM[0];
+        this.WIND_IM = IM[1];
+        this.GEOTHERMAL_IM = IM[2];
+        this.HYDRO_IM = IM[3];
+        this.THERMAL_IM = IM[4];
+        this.NUCLEAR_IM = IM[5];
+
     }
 
     public bool isInsideRegion(Vector3 pos, int rNo)

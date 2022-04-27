@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerPlantDetailsController
 {
@@ -8,10 +9,23 @@ public class PowerPlantDetailsController
 
     private GameObject SCOREBOARD;
 
+    private Sprite SOLAR_PP_IM;
+    private Sprite WIND_PP_IM;
+    private Sprite GEOTHERMAL_PP_IM;
+    private Sprite HYDRO_PP_IM;
+    private Sprite THERMAL_PP_IM;
+    private Sprite NUCLEAR_PP_IM;
+
     public PowerPlantDetailsController(MainGrid grid, GameObject scoreBoard)
     {
         this.GRID = grid;
         this.SCOREBOARD = scoreBoard;
+        this.SOLAR_PP_IM = grid.SOLAR_IM;
+        this.WIND_PP_IM = grid.WIND_IM;
+        this.GEOTHERMAL_PP_IM = grid.GEOTHERMAL_IM;
+        this.HYDRO_PP_IM = grid.HYDRO_IM;
+        this.THERMAL_PP_IM = grid.THERMAL_IM;
+        this.NUCLEAR_PP_IM = grid.NUCLEAR_IM;
     }
 
     public void updateScoreBoard(PowerPlant pp,Vector3 curLoc)
@@ -62,6 +76,33 @@ public class PowerPlantDetailsController
         scoreBoardText.GetComponent<UnityEngine.UI.Text>().text = score;
 
         GameObject scoreBoardScore = this.GRID.SCOREBOARD_SCORE.transform.GetChild(0).gameObject;
-        scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text = this.GRID.SCORE.calculateScore().ToString();
+        scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text = $@"Score : {this.GRID.SCORE.calculateScore().ToString()}";
+
+        GameObject powerPlantPreview = this.SCOREBOARD.transform.GetChild(1).gameObject;
+        switch(id){
+            case 1:
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.SOLAR_PP_IM;
+
+            break;
+            case 2:
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.WIND_PP_IM;
+
+            break;
+            case 3:
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.GEOTHERMAL_PP_IM;
+
+            break;
+            case 4:
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.HYDRO_PP_IM;
+            break;
+            case 5:
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.THERMAL_PP_IM;
+
+            break;
+            case 6:
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.NUCLEAR_PP_IM;
+
+            break;
+        }
     }
 }
