@@ -96,11 +96,11 @@ public class PowerPlantDetailsController
                 powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.HYDRO_PP_IM;
             break;
             case 5:
-                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.THERMAL_PP_IM;
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.NUCLEAR_PP_IM;
 
             break;
             case 6:
-                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.NUCLEAR_PP_IM;
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.THERMAL_PP_IM;
 
             break;
         }
