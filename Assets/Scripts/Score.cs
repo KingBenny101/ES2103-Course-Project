@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Score
 {
-    private float ENERGY_THRESHOLD;
+    public float ENERGY_THRESHOLD;
     
-    private float TOTAL_ENERGY;
+    public float TOTAL_ENERGY;
     public float TOTAL_SCORE;
-    private float TOTAL_COST;
-    private float TOTAL_AREA;
-    private float TOTAL_EMISSION;
+    public float TOTAL_COST;
+    public float TOTAL_AREA;
+    public float TOTAL_EMISSION;
     
     private float[] WEIGHTS;
 
@@ -30,19 +30,37 @@ public class Score
         }
 
     public void addPowerPlant(PowerPlant pp){
+
+        
+        float ppEnergy,ppCost,ppArea,ppEmission;
+        float[] ff;
+        ff = pp.getPowerPlantValues();
+        ppCost  = ff[0];
+        ppArea = ff[1];
+        ppEnergy = ff[2];
+        ppEmission = ff[3]; 
     
-        this.TOTAL_ENERGY += pp.ENERGY;
-        this.TOTAL_COST += pp.COST;
-        this.TOTAL_AREA += pp.AREA;
-        this.TOTAL_EMISSION += pp.EMISSION;
+        this.TOTAL_ENERGY += ppEnergy;
+        this.TOTAL_COST += ppCost;
+        this.TOTAL_AREA += ppArea;
+        this.TOTAL_EMISSION += ppEmission;
 
     }
 
     public void delPowerPlant(PowerPlant pp){
-        this.TOTAL_ENERGY -= pp.ENERGY;
-        this.TOTAL_COST -= pp.COST;
-        this.TOTAL_AREA -= pp.AREA;
-        this.TOTAL_EMISSION -= pp.EMISSION;
+        
+        float ppEnergy,ppCost,ppArea,ppEmission;
+        float[] ff;
+        ff = pp.getPowerPlantValues();
+        ppCost  = ff[0];
+        ppArea = ff[1];
+        ppEnergy = ff[2];
+        ppEmission = ff[3]; 
+
+        this.TOTAL_ENERGY -= ppEnergy;
+        this.TOTAL_COST -= ppCost;
+        this.TOTAL_AREA -= ppArea;
+        this.TOTAL_EMISSION -= ppEmission;
     }
 
     public float calculateScore(){
@@ -54,4 +72,12 @@ public class Score
         return this.TOTAL_SCORE;   
     }
 
+
+
+    public bool isCompleted(){
+        if(this.TOTAL_ENERGY >= this.ENERGY_THRESHOLD){
+            return true;
+        }
+        return false;
+    }
 }

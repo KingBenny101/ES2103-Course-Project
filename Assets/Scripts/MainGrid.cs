@@ -16,10 +16,12 @@ public class MainGrid
     public GameObject SCOREBOARD_SCORE;
 
     public Sprite SOLAR_IM,HYDRO_IM, WIND_IM, GEOTHERMAL_IM,NUCLEAR_IM,THERMAL_IM;
+    public bool WIN;
 
 
     public MainGrid(int width, int height, float gridCellLength, GameObject gridContainer, GameObject scoreBoardScore, Sprite[] IM)
     {
+        this.WIN = false;
         this.width = width;
         this.height = height;
         this.yOffset = gridContainer.GetComponent<Transform>().position.y;
@@ -66,7 +68,7 @@ public class MainGrid
         Draw.DrawLine(gridStart + new Vector3(gridArray.GetLength(0) * gridCellLength, 0, 0), gridEndY, Color.black, 0.01f);
         Vector3 gridEndX = new Vector3(gridStart.x, gridStart.y + gridArray.GetLength(1) * gridCellLength, 0);
         Draw.DrawLine(gridEndY, gridEndX, Color.black, 0.01f);
-        this.SCORE = new Score(10f);
+        this.SCORE = new Score(100f);
         this.SCOREBOARD_SCORE =scoreBoardScore;
 
         this.SOLAR_IM = IM[0];

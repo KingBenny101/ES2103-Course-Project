@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject Panel;
+    public GameObject GameOver;
     public GameObject PowerPlantSolar;
     public GameObject PowerPlantWind;
     public GameObject PowerPlantGeoThermal;
@@ -29,6 +30,9 @@ public class GameController : MonoBehaviour
 
     public Sprite SOLAR_IM,HYDRO_IM, WIND_IM, GEOTHERMAL_IM,NUCLEAR_IM,THERMAL_IM;
 
+    
+    private Timer t;
+    public UnityEngine.UI.Text TimeDisplay;
     public void Start()
     {
         if (Panel)
@@ -39,6 +43,8 @@ public class GameController : MonoBehaviour
 
         }
 
+        GameOver.SetActive(false);
+
         Sprite[] S = new Sprite[6];
         S[0] = this.SOLAR_IM;
         S[1] = this.WIND_IM;
@@ -48,6 +54,31 @@ public class GameController : MonoBehaviour
         S[5] = this.NUCLEAR_IM;
 
         grid = new MainGrid(34, 34, 0.206250f, GridContainer,scoreBoardScore,S);
+
+        
+        t = new Timer(TimeDisplay,1000f);
+        t.StartTime();
+    }
+
+
+    public void Update(){
+        if((this.grid.WIN && Time.timeScale == 1) || t.timerIsRunning == false){
+            GameOver.SetActive(true);
+            Time.timeScale = 0;
+            Main.gameObject.SetActive(false);
+
+
+            GameObject scoreDisplay = GameOver.transform.GetChild(0).transform.GetChild(1).gameObject;
+            GameObject tableDisplay = GameOver.transform.GetChild(0).transform.GetChild(2).gameObject;
+            
+            string n = "\n";
+            scoreDisplay.GetComponent<UnityEngine.UI.Text>().text = $@"YOUR SCORE{n}{this.grid.SCORE.TOTAL_SCORE}";
+            tableDisplay.GetComponent<UnityEngine.UI.Text>().text = $@"Money spent{n}INR {this.grid.SCORE.TOTAL_COST}{n}{n}LAND Occupied{n}{this.grid.SCORE.TOTAL_AREA} Acre{n}{n}Emissions{n}{this.grid.SCORE.TOTAL_EMISSION} KG/Kwh";
+        
+        }
+        t.UpdateTime();
+
+        
 
     }
 
@@ -115,7 +146,7 @@ public class GameController : MonoBehaviour
 
         go.GetComponent<Dragger>().Max.x = GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x * 0.5f;
         go.GetComponent<Dragger>().Min.y = -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;
-        
+        go.GetComponent<BoxCollider2D>().size = new Vector2(4f,4f);
         var pps = go.GetComponent<Dragger>();
         pps.setAndUpdatePP();
     }
@@ -125,6 +156,10 @@ public class GameController : MonoBehaviour
     {   
 
         Destroy(LastSelected);
+        var pp = LastSelected.GetComponent<Dragger>().PP;
+        this.grid.SCORE.delPowerPlant(pp);
+        var pps = LastSelected.GetComponent<Dragger>();
+        pps.setAndUpdatePP();
         LastSelected = null;
     }
 

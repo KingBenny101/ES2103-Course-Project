@@ -28,7 +28,7 @@ public class PowerPlantDetailsController
         this.NUCLEAR_PP_IM = grid.NUCLEAR_IM;
     }
 
-    public void updateScoreBoard(PowerPlant pp,Vector3 curLoc)
+    public void updateScoreBoard(PowerPlant pp, Vector3 curLoc)
     {
         GameObject scoreBoardText = this.SCOREBOARD.transform.GetChild(0).gameObject;
         var id = this.GRID.SelectedPowerPlant;
@@ -36,73 +36,342 @@ public class PowerPlantDetailsController
         var ppType = "Empty";
         var n = '\n';
 
+
         switch (id)
         {
             case 1:
                 ppType = "Solar";
                 break;
-            
+
             case 2:
                 ppType = "Wind";
                 break;
-            
+
             case 3:
                 ppType = "Geo-Thermal";
                 break;
-            
+
             case 4:
                 ppType = "Hydro";
                 break;
-            
+
             case 5:
                 ppType = "Thermal";
                 break;
-            
+
             case 6:
                 ppType = "Nuclear";
                 break;
         }
         int inx;
         inx = 5;
-        for(int c= 0; c<this.GRID.getColorSize();c++){
-            if(this.GRID.isInsideRegion(curLoc,c+1)){
+        for (int c = 0; c < this.GRID.getColorSize(); c++)
+        {
+            if (this.GRID.isInsideRegion(curLoc, c + 1))
+            {
                 inx = c;
                 break;
             }
         }
 
+        
 
-        string score = $@"Current Region : {inx}{n}PowerPlant Type : {ppType}{n}PowerPlant Energy : {pp.ENERGY}{n}PowerPlant Area : {pp.AREA}{n}PowerPlant Cost : {pp.COST}{n}PowerPlant Emission : {pp.EMISSION}";
+        switch (inx+1)
+        {
+            case 1:
+                // Dessert
+                
+            float fe, fc;
+            fe = 1f;
+            fc = 1f;
+                switch (id)
+                {
+                    case 1:
+                        // Solar
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 2:
+                        // Wind
+                        fe = 0.6f;
+                        fc = 2f;
+                        break;
+
+                    case 3:
+                        // GeoThermal
+                        fe = 0.6f;
+                        fc = 2f;
+                        break;
+
+                    case 4:
+                        // Hydro
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+
+                    case 5:
+                        // Nuclear
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 6:
+                        // Thermal
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+                }
+                
+                this.GRID.SCORE.delPowerPlant(pp);
+                pp.setFactorValues(fc, 1f, fe, 1f);
+                this.GRID.SCORE.addPowerPlant(pp);
+                break;
+            case 2:
+                // River
+                fe = 1f;
+                fc = 1f;
+                switch (id)
+                {
+                    case 1:
+                        // Solar
+                        fe =0f;
+                        fc = 10f;
+                        break;
+
+                    case 2:
+                        // Wind
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+
+                    case 3:
+                        // GeoThermal
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+
+                    case 4:
+                        // Hydro
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 5:
+                        // Nuclear
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+
+                    case 6:
+                        // Thermal
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+                }
+                
+                this.GRID.SCORE.delPowerPlant(pp);
+                pp.setFactorValues(fc, 1f, fe, 1f);
+                this.GRID.SCORE.addPowerPlant(pp);
+                break;
+            case 3:
+                // Mountains
+                fe = 1f;
+                fc = 1f;
+                switch (id)
+                {
+                    case 1:
+                        // Solar
+                        fe = 0.3f;
+                        fc = 5f;
+                        break;
+
+                    case 2:
+                        // Wind
+                        fe = 0.3f;
+                        fc = 5f;
+                        break;
+
+                    case 3:
+                        // GeoThermal
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 4:
+                        // Hydro
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+
+                    case 5:
+                        // Nuclear
+                        fe = 1f;
+                        fc = 5f;
+                        break;
+
+                    case 6:
+                        // Thermal
+                        fe = 1f;
+                        fc = 5f;
+                        break;
+                }
+
+                this.GRID.SCORE.delPowerPlant(pp);
+                pp.setFactorValues(fc, 1f, fe, 1f);
+                this.GRID.SCORE.addPowerPlant(pp);
+                break;
+            case 4:
+                // Plains
+                fe = 1f;
+                fc = 1f;
+                switch (id)
+                {
+                    case 1:
+                        // Solar
+                        fe =0.6f;
+                        fc = 2f;
+                        break;
+
+                    case 2:
+                        // Wind
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 3:
+                        // GeoThermal
+                        fe = 0.3f;
+                        fc = 2f;
+                        break;
+
+                    case 4:
+                        // Hydro
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+
+                    case 5:
+                        // Nuclear
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 6:
+                        // Thermal
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+                }
+
+                this.GRID.SCORE.delPowerPlant(pp);
+                pp.setFactorValues(fc, 1f, fe, 1f);
+                this.GRID.SCORE.addPowerPlant(pp);
+                break;
+            case 5:
+                // City
+                fe = 1f;
+                fc = 1f;
+                switch (id)
+                {
+                    case 1:
+                        // Solar
+                        fe = 0.6f;
+                        fc = 2f;
+                        break;
+
+                    case 2:
+                        // Wind
+                        fe = 0.3f;
+                        fc = 2f;
+                        break;
+
+                    case 3:
+                        // GeoThermal
+                        fe = 0f;
+                        fc = 5f;
+                        break;
+
+                    case 4:
+                        // Hydro
+                        fe = 0f;
+                        fc = 10f;
+                        break;
+
+                    case 5:
+                        // Nuclear
+                        fe = 1f;
+                        fc = 5f;
+                        break;
+
+                    case 6:
+                        // Thermal
+                        fe = 1f;
+                        fc = 5f;
+                        break;
+                }
+                this.GRID.SCORE.delPowerPlant(pp);
+                pp.setFactorValues(fc, 1f, fe, 1f);
+                this.GRID.SCORE.addPowerPlant(pp);
+
+
+                break;
+        }
+
+
+
+
+
+        float ppEnergy, ppCost, ppArea, ppEmission;
+        float[] ff;
+        ff = pp.getPowerPlantValues();
+        ppCost = ff[0];
+        ppArea = ff[1];
+        ppEnergy = ff[2];
+        ppEmission = ff[3];
+
+        this.GRID.SCORE.calculateScore();
+
+
+        string score = $@"Current Region : {inx+1}{n}Power Plant{n}Type : {ppType}{n}Energy : {ppEnergy}{n}Area : {ppArea}{n}Cost : {ppCost}{n}Emission : {ppEmission}";
         scoreBoardText.GetComponent<UnityEngine.UI.Text>().text = score;
 
+
+
         GameObject scoreBoardScore = this.GRID.SCOREBOARD_SCORE.transform.GetChild(0).gameObject;
-        scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text = $@"Score : {this.GRID.SCORE.calculateScore().ToString()}";
+        scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text = $@"Energy{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_ENERGY)}/{this.GRID.SCORE.ENERGY_THRESHOLD}";
 
         GameObject powerPlantPreview = this.SCOREBOARD.transform.GetChild(1).gameObject;
-        switch(id){
+        switch (id)
+        {
             case 1:
                 powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.SOLAR_PP_IM;
 
-            break;
+                break;
             case 2:
                 powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.WIND_PP_IM;
 
-            break;
+                break;
             case 3:
                 powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.GEOTHERMAL_PP_IM;
 
-            break;
+                break;
             case 4:
                 powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.HYDRO_PP_IM;
-            break;
+                break;
             case 5:
                 powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.NUCLEAR_PP_IM;
 
-            break;
+                break;
             case 6:
                 powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.THERMAL_PP_IM;
 
-            break;
+                break;
+        }
+        powerPlantPreview.GetComponent<UnityEngine.UI.Image>().color = new Color(255,255,255,255);
+
+        if(this.GRID.SCORE.isCompleted()){
+            this.GRID.WIN = true;
         }
     }
 }
