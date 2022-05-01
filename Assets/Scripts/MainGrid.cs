@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class MainGrid
 {
-    private int width;
-    private int height;
+    public int width;
+    public int height;
     private Vector3 gridStart;
     private float yOffset;
     private int[,] gridArray;
@@ -18,9 +18,13 @@ public class MainGrid
     public Sprite SOLAR_IM,HYDRO_IM, WIND_IM, GEOTHERMAL_IM,NUCLEAR_IM,THERMAL_IM;
     public bool WIN;
 
+     public delegate bool REGION_FUNCTION(Vector3 pos, int rno,float width,float height);
 
-    public MainGrid(int width, int height, float gridCellLength, GameObject gridContainer, GameObject scoreBoardScore, Sprite[] IM)
+    public REGION_FUNCTION isInsideRegion;
+
+    public MainGrid(int width, int height, float gridCellLength, GameObject gridContainer, GameObject scoreBoardScore, Sprite[] IM,Func<Vector3,int,float,float,bool> regionfunction)
     {
+        this.isInsideRegion = new REGION_FUNCTION(regionfunction);
         this.WIN = false;
         this.width = width;
         this.height = height;
@@ -52,7 +56,7 @@ public class MainGrid
                 int inx;
                 inx = 5;
                 for(int c= 0; c<this.regionColours.GetLength(0);c++){
-                    if(isInsideRegion(lineStart,c+1)){
+                    if(isInsideRegion(lineStart,c+1,width,height)){
                         inx = c;
                         break;
                     }
@@ -80,49 +84,7 @@ public class MainGrid
 
     }
 
-    public bool isInsideRegion(Vector3 pos, int rNo)
-    {
-        float x, y, cy;
-        x = pos.x;
-        y = pos.y;
-        cy = 0f;
-        if (x > originPosition.x + width / 2 || x < originPosition.x - width / 2 || y > originPosition.y + width / 2 || y < originPosition.y - width / 2)
-            return false;
-        switch (rNo)
-        {
-            case 1:
-                cy = Mathf.Sin(x / 2 + 4) + 3f;
-                if (y >= cy)
-                {
-                    return true;
-                }
-                break;
-            case 2:
-                cy = Mathf.Sin(x / 2 + 4) + 2f;
-                if (y >= cy)
-                {
-                    return true;
-                }
-                break;
-            case 3:
-                cy = 1.5f * (1 - Mathf.Exp(-1f * (x + 3.5f)));
-                if (y >= cy)
-                {
-                    return true;
-                }
-                break;
-            case 4:
-                cy = -x * Mathf.Cos(x) - 2;
-                if (y >= cy)
-                {
-                    return true;
-                }
-                break;
-            case 5:
-                return true;
-        }
-        return false;
-    }
+
 
     public int getColorSize(){
         return this.regionColours.GetLength(0);

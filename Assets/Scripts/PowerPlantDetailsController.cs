@@ -67,7 +67,7 @@ public class PowerPlantDetailsController
         inx = 5;
         for (int c = 0; c < this.GRID.getColorSize(); c++)
         {
-            if (this.GRID.isInsideRegion(curLoc, c + 1))
+            if (this.GRID.isInsideRegion(curLoc, c + 1,this.GRID.width,this.GRID.height))
             {
                 inx = c;
                 break;

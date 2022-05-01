@@ -5,13 +5,14 @@ using UnityEngine.UI;
 public class Timer
 {
     public float timeRemaining ;
-    public bool timerIsRunning = false;
+    public bool timerIsRunning ;
     public Text timeText;
 
     public Timer(Text ti,float tim)
     {
         this.timeText = ti;
         this.timeRemaining = tim;
+        this.timerIsRunning = false;
     }
     public void StartTime()
     {

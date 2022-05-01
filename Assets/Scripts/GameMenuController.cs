@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 
 public class GameMenuController : MonoBehaviour
+
 {
+   
     public void PauseGame(){
         Debug.Log("Loading Main Menu.");
         SceneManager.LoadScene("MainMenu");
@@ -13,6 +15,7 @@ public class GameMenuController : MonoBehaviour
 
     public void loadLevel(int level){
         Debug.Log($"Loading level {level}");
+        Supreme.LEVEL_NUMBER = level;
         if(level == 1){
             SceneManager.LoadScene("Level1");
         }
