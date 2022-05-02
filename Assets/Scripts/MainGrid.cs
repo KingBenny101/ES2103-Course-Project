@@ -51,13 +51,14 @@ public class MainGrid
                 0
             );
 
-        this.regionColours = new Color[6];
+        this.regionColours = new Color[7];
         this.regionColours[0] = Color.yellow;
         this.regionColours[1] = Color.blue;
         this.regionColours[2] = Color.red;
         this.regionColours[3] = Color.green;
         this.regionColours[4] = Color.black;
-        this.regionColours[5] = Color.black;
+        this.regionColours[5] = Color.gray;
+        this.regionColours[6] = Color.blue;
 
         gridArray = new int[width, height];
 
