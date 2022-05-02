@@ -238,7 +238,7 @@ public class Regions
                 }
                 break;
             case 4:
-                cy =  (float)(Math.Cosh(1.2f*x -1.5f));
+                cy =  (float)(Math.Cosh(1.2f*x -1f));
                 if (y >= cy)
                 {
                     return true;
