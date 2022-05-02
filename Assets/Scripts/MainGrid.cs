@@ -87,7 +87,7 @@ public class MainGrid
                 inx = 5;
                 for (int c = 0; c < this.regionColours.GetLength(0); c++)
                 {
-                    if (isInsideRegion(lineStart, c + 1, width, height))
+                    if (this.isInsideRegion(lineStart, c + 1, width, height))
                     {
                         inx = c;
                         break;

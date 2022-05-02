@@ -57,8 +57,9 @@ public class GameController : MonoBehaviour
 
         REGIONS = new Regions();
 
-        grid = new MainGrid(34, 34, 0.206250f, GridContainer, scoreBoardScore, S, REGIONS.level1);
+        //grid = new MainGrid(34, 34, 0.206250f, GridContainer, scoreBoardScore, S, REGIONS.level2);
 
+        Debug.Log(Supreme.LEVEL_NUMBER);
         switch (Supreme.LEVEL_NUMBER)
         {
             case 1:
@@ -71,7 +72,6 @@ public class GameController : MonoBehaviour
                     S,
                     REGIONS.level1
                 );
-                Debug.Log("REGIONS 1");
 
                 break;
             case 2:
@@ -84,10 +84,9 @@ public class GameController : MonoBehaviour
                     S,
                     REGIONS.level2
                 );
-                Debug.Log("REGIONS 2");
                 break;
             case 3:
-                            grid = new MainGrid(
+                grid = new MainGrid(
                     34,
                     34,
                     0.206250f,
@@ -96,10 +95,9 @@ public class GameController : MonoBehaviour
                     S,
                     REGIONS.level3
                 );
-                Debug.Log("REGIONS 3");
                 break;
             case 4:
-                            grid = new MainGrid(
+                grid = new MainGrid(
                     34,
                     34,
                     0.206250f,
@@ -108,10 +106,9 @@ public class GameController : MonoBehaviour
                     S,
                     REGIONS.level4
                 );
-                Debug.Log("REGIONS 4");
                 break;
             case 5:
-                            grid = new MainGrid(
+                grid = new MainGrid(
                     34,
                     34,
                     0.206250f,
@@ -120,7 +117,6 @@ public class GameController : MonoBehaviour
                     S,
                     REGIONS.level5
                 );
-                Debug.Log("REGIONS 5");
                 break;
         }
 
