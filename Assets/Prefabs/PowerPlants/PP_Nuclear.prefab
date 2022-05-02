@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4055285407703088540}
   - component: {fileID: 4055285407703088541}
   - component: {fileID: 4055285407703088530}
+  - component: {fileID: 2167444780090667884}
   m_Layer: 0
   m_Name: PP_Nuclear
   m_TagString: Untagged
@@ -134,3 +135,24 @@ MonoBehaviour:
   _yOffsetMin: 0
   scoreBoard: {fileID: 0}
   powerPlantId: 0
+--- !u!50 &2167444780090667884
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4055285407703088528}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
