@@ -27,6 +27,15 @@ public class Dragger : MonoBehaviour
     public PowerPlant PP;
     public int powerPlantId;
 
+    private void Update()
+    {
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, Min.x, Max.x);
+        pos.y = Mathf.Clamp(pos.y, Min.y, Max.y);
+
+        transform.position = pos;
+    }
+
     void OnMouseDown()
     {
         _dragOffset = transform.position - GetMousePos();
