@@ -13,11 +13,18 @@ public class Regions
 
     public bool level1(Vector3 pos, int rNo, float width, float height)
     {
-        float x, y, cy;
+        float x,
+            y,
+            cy;
         x = pos.x;
         y = pos.y;
         cy = 0f;
-        if (x > originPosition.x + width / 2 || x < originPosition.x - width / 2 || y > originPosition.y + width / 2 || y < originPosition.y - width / 2)
+        if (
+            x > originPosition.x + width / 2
+            || x < originPosition.x - width / 2
+            || y > originPosition.y + width / 2
+            || y < originPosition.y - width / 2
+        )
             return false;
         switch (rNo)
         {
@@ -55,46 +62,53 @@ public class Regions
         return false;
     }
 
-        public bool level2(Vector3 pos, int rNo,float width,float height)
+    public bool level2(Vector3 pos, int rNo, float width, float height)
     {
-        float x, y, cy;
+        float x,
+            y,
+            cy;
         x = pos.x;
         y = pos.y;
         cy = 0f;
-        if (x > originPosition.x + width / 2 || x < originPosition.x - width / 2 || y > originPosition.y + width / 2 || y < originPosition.y - width / 2)
+        if (
+            x > originPosition.x + width / 2
+            || x < originPosition.x - width / 2
+            || y > originPosition.y + width / 2
+            || y < originPosition.y - width / 2
+        )
             return false;
         switch (rNo)
         {
             case 1:
-                cy = 3.5f*Mathf.Sin(0.5f*x-3.2f) + 6f;  //desert
+                cy = 3.5f * Mathf.Sin(0.5f * x - 3.2f) + 6f; //desert
                 if (y > cy)
                 {
                     return true;
                 }
                 break;
             case 2:
-                cy = Mathf.Cos(x+5.5f)-2.4f;  //mountains
+                cy = Mathf.Cos(x + 5.5f) - 2.4f; //mountains
                 if (y <= cy)
                 {
                     return true;
                 }
                 break;
             case 3:
-                cy = (-x)* Mathf.Sin(x-2);   //city
+                cy = (-x) * Mathf.Sin(x - 2); //city
                 if (y <= cy)
                 {
                     return true;
                 }
                 break;
             case 4:
-                cy = (-x)* Mathf.Sin(x-2);   //city
+                cy = (-x) * Mathf.Sin(x - 2); //city
                 if (y >= cy)
                 {
                     return true;
                 }
                 break;
             case 5:
-                cy = (-x+0.6f)*Mathf.Sin(x)+2;  //plains
+                cy = (-x + 0.6f) * Mathf.Sin(x) + 2; //plains
                 if (y >= cy)
                 {
                     return true;

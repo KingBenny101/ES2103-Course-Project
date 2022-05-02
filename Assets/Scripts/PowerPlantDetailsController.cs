@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class PowerPlantDetailsController
 {
     private MainGrid GRID;
-
     private GameObject SCOREBOARD;
-
     private Sprite SOLAR_PP_IM;
     private Sprite WIND_PP_IM;
     private Sprite GEOTHERMAL_PP_IM;
@@ -35,7 +33,6 @@ public class PowerPlantDetailsController
 
         var ppType = "Empty";
         var n = '\n';
-
 
         switch (id)
         {
@@ -67,23 +64,22 @@ public class PowerPlantDetailsController
         inx = 5;
         for (int c = 0; c < this.GRID.getColorSize(); c++)
         {
-            if (this.GRID.isInsideRegion(curLoc, c + 1,this.GRID.width,this.GRID.height))
+            if (this.GRID.isInsideRegion(curLoc, c + 1, this.GRID.width, this.GRID.height))
             {
                 inx = c;
                 break;
             }
         }
 
-        
-
-        switch (inx+1)
+        switch (inx + 1)
         {
             case 1:
                 // Dessert
-                
-            float fe, fc;
-            fe = 1f;
-            fc = 1f;
+
+                float fe,
+                    fc;
+                fe = 1f;
+                fc = 1f;
                 switch (id)
                 {
                     case 1:
@@ -122,7 +118,7 @@ public class PowerPlantDetailsController
                         fc = 1f;
                         break;
                 }
-                
+
                 this.GRID.SCORE.delPowerPlant(pp);
                 pp.setFactorValues(fc, 1f, fe, 1f);
                 this.GRID.SCORE.addPowerPlant(pp);
@@ -135,7 +131,7 @@ public class PowerPlantDetailsController
                 {
                     case 1:
                         // Solar
-                        fe =0f;
+                        fe = 0f;
                         fc = 10f;
                         break;
 
@@ -169,7 +165,7 @@ public class PowerPlantDetailsController
                         fc = 10f;
                         break;
                 }
-                
+
                 this.GRID.SCORE.delPowerPlant(pp);
                 pp.setFactorValues(fc, 1f, fe, 1f);
                 this.GRID.SCORE.addPowerPlant(pp);
@@ -229,7 +225,7 @@ public class PowerPlantDetailsController
                 {
                     case 1:
                         // Solar
-                        fe =0.6f;
+                        fe = 0.6f;
                         fc = 2f;
                         break;
 
@@ -314,15 +310,13 @@ public class PowerPlantDetailsController
                 pp.setFactorValues(fc, 1f, fe, 1f);
                 this.GRID.SCORE.addPowerPlant(pp);
 
-
                 break;
         }
 
-
-
-
-
-        float ppEnergy, ppCost, ppArea, ppEmission;
+        float ppEnergy,
+            ppCost,
+            ppArea,
+            ppEmission;
         float[] ff;
         ff = pp.getPowerPlantValues();
         ppCost = ff[0];
@@ -332,14 +326,13 @@ public class PowerPlantDetailsController
 
         this.GRID.SCORE.calculateScore();
 
-
-        string score = $@"Current Region : {inx+1}{n}Power Plant{n}Type : {ppType}{n}Energy : {ppEnergy}{n}Area : {ppArea}{n}Cost : {ppCost}{n}Emission : {ppEmission}";
+        string score =
+            $@"Current Region : {inx + 1}{n}Power Plant{n}Type : {ppType}{n}Energy : {ppEnergy}{n}Area : {ppArea}{n}Cost : {ppCost}{n}Emission : {ppEmission}";
         scoreBoardText.GetComponent<UnityEngine.UI.Text>().text = score;
 
-
-
         GameObject scoreBoardScore = this.GRID.SCOREBOARD_SCORE.transform.GetChild(0).gameObject;
-        scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text = $@"Energy{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_ENERGY)}/{this.GRID.SCORE.ENERGY_THRESHOLD}";
+        scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text =
+            $@"Energy{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_ENERGY)}/{this.GRID.SCORE.ENERGY_THRESHOLD}";
 
         GameObject powerPlantPreview = this.SCOREBOARD.transform.GetChild(1).gameObject;
         switch (id)
@@ -353,7 +346,8 @@ public class PowerPlantDetailsController
 
                 break;
             case 3:
-                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite = this.GEOTHERMAL_PP_IM;
+                powerPlantPreview.GetComponent<UnityEngine.UI.Image>().sprite =
+                    this.GEOTHERMAL_PP_IM;
 
                 break;
             case 4:
@@ -368,9 +362,15 @@ public class PowerPlantDetailsController
 
                 break;
         }
-        powerPlantPreview.GetComponent<UnityEngine.UI.Image>().color = new Color(255,255,255,255);
+        powerPlantPreview.GetComponent<UnityEngine.UI.Image>().color = new Color(
+            255,
+            255,
+            255,
+            255
+        );
 
-        if(this.GRID.SCORE.isCompleted()){
+        if (this.GRID.SCORE.isCompleted())
+        {
             this.GRID.WIN = true;
         }
     }

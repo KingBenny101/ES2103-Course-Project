@@ -26,7 +26,7 @@ public class Dragger : MonoBehaviour
 
     public PowerPlant PP;
     public int powerPlantId;
-    
+
     void OnMouseDown()
     {
         _dragOffset = transform.position - GetMousePos();
@@ -44,17 +44,17 @@ public class Dragger : MonoBehaviour
 
         transform.position = pos;
 
-
         float gridCellSize;
         gridCellSize = gridSize / gridCellCount;
 
         var currentPos = transform.position;
-        transform.position = new Vector3(Mathf.Round(currentPos.x / gridSize * gridCellCount) * gridCellSize,
-                                     Mathf.Round(currentPos.y / gridSize * gridCellCount) * gridCellSize,
-                                     currentPos.z);
+        transform.position = new Vector3(
+            Mathf.Round(currentPos.x / gridSize * gridCellCount) * gridCellSize,
+            Mathf.Round(currentPos.y / gridSize * gridCellCount) * gridCellSize,
+            currentPos.z
+        );
 
         setAndUpdatePP();
-
     }
 
     Vector3 GetMousePos()
@@ -65,12 +65,10 @@ public class Dragger : MonoBehaviour
         return mousePos;
     }
 
-    public void setAndUpdatePP(){
-        
-        PowerPlantDetailsController ppdc = new PowerPlantDetailsController(grid,scoreBoard);
+    public void setAndUpdatePP()
+    {
+        PowerPlantDetailsController ppdc = new PowerPlantDetailsController(grid, scoreBoard);
         grid.SelectedPowerPlant = powerPlantId;
-        ppdc.updateScoreBoard(this.PP,transform.position);
+        ppdc.updateScoreBoard(this.PP, transform.position);
     }
-
-
 }

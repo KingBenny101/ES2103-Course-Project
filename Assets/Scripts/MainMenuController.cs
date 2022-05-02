@@ -5,17 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    public void SelectLevel(){
+    public void SelectLevel()
+    {
         Debug.Log("Starting Game.");
         SceneManager.LoadScene("LevelSelection");
     }
 
-    public void HowToPlay(){
+    public void HowToPlay()
+    {
         Debug.Log("Loading HowToPlay.");
         SceneManager.LoadScene("HowToPlay");
     }
 
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Debug.Log("Quiting Game.");
         Application.Quit();
     }

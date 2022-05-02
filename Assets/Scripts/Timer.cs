@@ -2,26 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Timer
 {
-    public float timeRemaining ;
-    public bool timerIsRunning ;
+    public float timeRemaining;
+    public bool timerIsRunning;
     public Text timeText;
 
-    public Timer(Text ti,float tim)
+    public Timer(Text ti, float tim)
     {
         this.timeText = ti;
         this.timeRemaining = tim;
         this.timerIsRunning = false;
     }
+
     public void StartTime()
     {
         timerIsRunning = true;
         Time.timeScale = 1;
     }
+
     public void UpdateTime()
     {
-        if(timerIsRunning)
+        if (timerIsRunning)
         {
             if (timeRemaining > 0)
             {
