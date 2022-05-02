@@ -119,4 +119,9 @@ public class Regions
         }
         return false;
     }
+    public bool level3(Vector3 pos, int rNo, float width, float height){return true;}
+    public bool level4(Vector3 pos, int rNo, float width, float height){return true;}
+    public bool level5(Vector3 pos, int rNo, float width, float height){return true;}
+
+
 }

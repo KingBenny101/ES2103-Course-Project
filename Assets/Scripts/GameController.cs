@@ -87,10 +87,40 @@ public class GameController : MonoBehaviour
                 Debug.Log("REGIONS 2");
                 break;
             case 3:
+                            grid = new MainGrid(
+                    34,
+                    34,
+                    0.206250f,
+                    GridContainer,
+                    scoreBoardScore,
+                    S,
+                    REGIONS.level3
+                );
+                Debug.Log("REGIONS 3");
                 break;
             case 4:
+                            grid = new MainGrid(
+                    34,
+                    34,
+                    0.206250f,
+                    GridContainer,
+                    scoreBoardScore,
+                    S,
+                    REGIONS.level4
+                );
+                Debug.Log("REGIONS 4");
                 break;
             case 5:
+                            grid = new MainGrid(
+                    34,
+                    34,
+                    0.206250f,
+                    GridContainer,
+                    scoreBoardScore,
+                    S,
+                    REGIONS.level5
+                );
+                Debug.Log("REGIONS 5");
                 break;
         }
 
