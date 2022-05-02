@@ -199,7 +199,7 @@ public class Regions
 
     public bool level5(Vector3 pos, int rNo, float width, float height)
     {
-        //Debug.Log("From Region 4");
+        //Debug.Log("From Region 5");
         float x,
         y,
         cy,
@@ -238,7 +238,7 @@ public class Regions
                 }
                 break;
             case 4:
-                cy =  (float)(Math.Cosh(1.2f*x -1f));
+                cy =  (float)(Math.Cosh(1.2f*x -0.7f))+0.3f;
                 if (y >= cy)
                 {
                     return true;
