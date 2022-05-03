@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerPlant
+public class PowerPlant: MonoBehaviour  
 {
-    private float COST,
+    public float COST,
         AREA,
         ENERGY,
         EMISSION;
@@ -13,7 +13,7 @@ public class PowerPlant
         ENERGY_FC,
         EMISSION_FC;
 
-    public PowerPlant(float cost, float area, float energy, float emission)
+    public void Init(float cost, float area, float energy, float emission)
     {
         this.COST = cost;
         this.AREA = area;

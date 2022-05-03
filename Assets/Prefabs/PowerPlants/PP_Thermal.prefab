@@ -134,6 +134,7 @@ MonoBehaviour:
   _xOffsetMin: 0
   _yOffsetMin: 0
   scoreBoard: {fileID: 0}
+  PP: {fileID: 0}
   powerPlantId: 0
 --- !u!50 &-4415830263979906789
 Rigidbody2D:

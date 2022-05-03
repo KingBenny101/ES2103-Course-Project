@@ -37,15 +37,15 @@ public class Dragger : MonoBehaviour
     }
 
     void OnMouseDown()
-    {
+    {if(grid.CLICKABLE){
         _dragOffset = transform.position - GetMousePos();
         GC.LastSelected = this.gameObject;
 
-        setAndUpdatePP();
+        setAndUpdatePP();}
     }
 
     void OnMouseDrag()
-    {
+    {if(grid.CLICKABLE){
         Vector3 pos = GetMousePos() + _dragOffset;
         Vector3 newPos = Vector3.zero;
         pos.x = Mathf.Clamp(pos.x, Min.x, Max.x);
@@ -63,7 +63,7 @@ public class Dragger : MonoBehaviour
             currentPos.z
         );
 
-        setAndUpdatePP();
+        setAndUpdatePP();}
     }
 
     Vector3 GetMousePos()

@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
     public GameObject GridContainer;
     public GameObject scoreBoard;
     public GameObject scoreBoardScore;
+    public GameObject END_GAME_CHOICE;
+    public GameObject INVENTORY;
     private MainGrid grid;
 
     public Sprite SOLAR_IM,
@@ -34,7 +36,7 @@ public class GameController : MonoBehaviour
 
     private Timer t;
     public UnityEngine.UI.Text TimeDisplay;
-
+    public UnityEngine.UI.Text EndGameChoiceDisplay;
     public Regions REGIONS;
 
     public void Start()
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour
         }
 
         GameOver.SetActive(false);
+        END_GAME_CHOICE.SetActive(false);
 
         Sprite[] S = new Sprite[6];
         S[0] = this.SOLAR_IM;
@@ -120,18 +123,117 @@ public class GameController : MonoBehaviour
                 break;
         }
 
-        t = new Timer(TimeDisplay, 1000f);
+        t = new Timer(TimeDisplay, 300f);
         t.StartTime();
+
+
+
+
+
+                var btn = INVENTORY.transform.GetChild(0).gameObject;
+                var pp = btn.AddComponent<PowerPlant>();
+                pp.Init(1,2,3,4);
+                
+
+                
+                btn = INVENTORY.transform.GetChild(1).gameObject;
+                pp = btn.AddComponent<PowerPlant>();
+                pp.Init(5,6,7,8);
+                
+                
+
+                
+                btn = INVENTORY.transform.GetChild(2).gameObject;
+                pp = btn.AddComponent<PowerPlant>();
+                pp.Init(9,10,11,12);
+                
+                
+
+                
+                btn = INVENTORY.transform.GetChild(3).gameObject;
+                pp = btn.AddComponent<PowerPlant>();
+                pp.Init(13,14,15,16);
+                
+                
+
+                
+                btn = INVENTORY.transform.GetChild(4).gameObject;
+                pp = btn.AddComponent<PowerPlant>();
+                pp.Init(17,18,19,20);
+                
+                
+                btn = INVENTORY.transform.GetChild(5).gameObject;
+                pp = btn.AddComponent<PowerPlant>();
+                pp.Init(21,22,23,24);
+                
+                
+                
     }
 
     public void Update()
-    {
+    {   
+
+        CheckFeasibilityAndUpdate();
+
         if ((this.grid.WIN && Time.timeScale == 1) || t.timerIsRunning == false)
         {
-            GameOver.SetActive(true);
+            END_GAME_CHOICE.SetActive(true);
             Time.timeScale = 0;
-            Main.gameObject.SetActive(false);
+            //Main.gameObject.SetActive(false);
+            DisableEnableInventoryBtn(1);
 
+            this.grid.CLICKABLE = false;
+
+        }
+        t.UpdateTime();
+    }
+
+
+    public void CheckFeasibilityAndUpdate(){
+        int ind = INVENTORY.transform.childCount;     
+        ind -=1;  
+        for(int i = 0; i < ind;i++){
+            var child  = INVENTORY.transform.GetChild(i);
+            
+            if(child.GetComponent<PowerPlant>().COST > this.grid.SCORE.TOTAL_COST || child.GetComponent<PowerPlant>().EMISSION > (this.grid.SCORE.EMISSION_THRESHOLD-this.grid.SCORE.TOTAL_EMISSION))
+            {
+                child.GetComponent<UnityEngine.UI.Button>().interactable = false;
+            }else {
+                child.GetComponent<UnityEngine.UI.Button>().interactable = true;
+
+            }
+        }
+    }
+
+    public void ContinueGame(){
+        DisableEnableInventoryBtn(0);
+        this.grid.CLICKABLE = true;
+        //Time.timeScale = 1;
+        
+    }
+
+    public void DisableEnableInventoryBtn(int c){
+        switch(c){
+            case 1:
+                foreach(Transform child in INVENTORY.transform){
+                    Debug.Log(child.transform);
+
+                    child.GetComponent<UnityEngine.UI.Button>().interactable = false;
+                }
+            break;
+            default:
+                foreach(Transform child in INVENTORY.transform){
+                    Debug.Log(child.transform);
+
+                    child.GetComponent<UnityEngine.UI.Button>().interactable = true;
+                }
+            break;
+        }
+    }
+    public void ShowGameOverScreen(){
+
+            GameOver.SetActive(true);
+            Main.gameObject.SetActive(false);
             GameObject scoreDisplay = GameOver.transform
                 .GetChild(0)
                 .transform.GetChild(1)
@@ -145,56 +247,106 @@ public class GameController : MonoBehaviour
             scoreDisplay.GetComponent<UnityEngine.UI.Text>().text =
                 $@"YOUR SCORE{n}{this.grid.SCORE.TOTAL_SCORE}";
             tableDisplay.GetComponent<UnityEngine.UI.Text>().text =
-                $@"Money spent{n}INR {this.grid.SCORE.TOTAL_COST}{n}{n}LAND Occupied{n}{this.grid.SCORE.TOTAL_AREA} Acre{n}{n}Emissions{n}{this.grid.SCORE.TOTAL_EMISSION} KG/Kwh";
-        }
-        t.UpdateTime();
+                $@"Money spent{n}INR {this.grid.SCORE.COST_THRESHOLD-this.grid.SCORE.TOTAL_COST}{n}{n}LAND Occupied{n}{this.grid.SCORE.TOTAL_AREA} Acre{n}{n}Emissions{n}{this.grid.SCORE.TOTAL_EMISSION} KG/Kwh";
+        
     }
-
     public void CreateNewPowerPlant(int choice)
     {
         GameObject go;
         PowerPlant pp;
+        GameObject btn;
+        PowerPlant btnPP;
+        float c,ar,e,em;
         switch (choice)
         {
             case 1:
                 go = Instantiate(PowerPlantSolar);
                 go.GetComponent<Dragger>().powerPlantId = choice;
-                pp = new PowerPlant(1, 2, 3, 4);
+                btn = INVENTORY.transform.GetChild(0).gameObject;
+                pp = go.AddComponent<PowerPlant>();
+                btnPP = btn.GetComponent<PowerPlant>();
+
+                c = btnPP.COST;
+                e = btnPP.ENERGY;
+                em = btnPP.EMISSION;
+                ar = btnPP.AREA;
+                pp.Init(c,ar,e,em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
+                
                 break;
             case 2:
                 go = Instantiate(PowerPlantWind);
                 go.GetComponent<Dragger>().powerPlantId = choice;
-                pp = new PowerPlant(5, 6, 7, 8);
+                btn = INVENTORY.transform.GetChild(1).gameObject;
+                pp = go.AddComponent<PowerPlant>();
+                btnPP = btn.GetComponent<PowerPlant>();
+
+                c = btnPP.COST;
+                e = btnPP.ENERGY;
+                em = btnPP.EMISSION;
+                ar = btnPP.AREA;
+                pp.Init(c,ar,e,em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
             case 3:
                 go = Instantiate(PowerPlantGeoThermal);
                 go.GetComponent<Dragger>().powerPlantId = choice;
-                pp = new PowerPlant(9, 10, 11, 12);
+                btn = INVENTORY.transform.GetChild(2).gameObject;
+                pp = go.AddComponent<PowerPlant>();
+                btnPP = btn.GetComponent<PowerPlant>();
+
+                c = btnPP.COST;
+                e = btnPP.ENERGY;
+                em = btnPP.EMISSION;
+                ar = btnPP.AREA;
+                pp.Init(c,ar,e,em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
             case 4:
                 go = Instantiate(PowerPlantHydro);
                 go.GetComponent<Dragger>().powerPlantId = choice;
-                pp = new PowerPlant(13, 14, 15, 16);
+                btn = INVENTORY.transform.GetChild(3).gameObject;
+                pp = go.AddComponent<PowerPlant>();
+                btnPP = btn.GetComponent<PowerPlant>();
+
+                c = btnPP.COST;
+                e = btnPP.ENERGY;
+                em = btnPP.EMISSION;
+                ar = btnPP.AREA;
+                pp.Init(c,ar,e,em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
             case 5:
                 go = Instantiate(PowerPlantNuclear);
                 go.GetComponent<Dragger>().powerPlantId = choice;
-                pp = new PowerPlant(17, 18, 19, 20);
+                btn = INVENTORY.transform.GetChild(4).gameObject;
+                pp = go.AddComponent<PowerPlant>();
+                btnPP = btn.GetComponent<PowerPlant>();
+
+                c = btnPP.COST;
+                e = btnPP.ENERGY;
+                em = btnPP.EMISSION;
+                ar = btnPP.AREA;
+                pp.Init(c,ar,e,em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
             default:
                 go = Instantiate(PowerPlantThermal);
                 go.GetComponent<Dragger>().powerPlantId = choice;
-                pp = new PowerPlant(21, 22, 23, 24);
+                btn = INVENTORY.transform.GetChild(5).gameObject;
+                pp = go.AddComponent<PowerPlant>();
+                btnPP = btn.GetComponent<PowerPlant>();
+
+                c = btnPP.COST;
+                e = btnPP.ENERGY;
+                em = btnPP.EMISSION;
+                ar = btnPP.AREA;
+                pp.Init(c,ar,e,em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;

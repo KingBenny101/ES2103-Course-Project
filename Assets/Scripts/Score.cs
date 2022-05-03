@@ -5,7 +5,8 @@ using UnityEngine;
 public class Score
 {
     public float ENERGY_THRESHOLD;
-
+    public float COST_THRESHOLD;
+    public float EMISSION_THRESHOLD;
     public float TOTAL_ENERGY;
     public float TOTAL_SCORE;
     public float TOTAL_COST;
@@ -14,12 +15,14 @@ public class Score
 
     private float[] WEIGHTS;
 
-    public Score(float energyThreshold)
+    public Score(float energyThreshold,float costThreshold, float emissionThreshold)
     {
         this.ENERGY_THRESHOLD = energyThreshold;
+        this.COST_THRESHOLD = costThreshold;
+        this.EMISSION_THRESHOLD = emissionThreshold;
         this.TOTAL_ENERGY = 0f;
         this.TOTAL_SCORE = 0f;
-        this.TOTAL_COST = 0f;
+        this.TOTAL_COST = costThreshold;
         this.TOTAL_AREA = 0f;
         this.TOTAL_EMISSION = 0f;
         this.WEIGHTS = new float[4];
@@ -43,7 +46,7 @@ public class Score
         ppEmission = ff[3];
 
         this.TOTAL_ENERGY += ppEnergy;
-        this.TOTAL_COST += ppCost;
+        this.TOTAL_COST -= ppCost;
         this.TOTAL_AREA += ppArea;
         this.TOTAL_EMISSION += ppEmission;
     }
@@ -62,7 +65,7 @@ public class Score
         ppEmission = ff[3];
 
         this.TOTAL_ENERGY -= ppEnergy;
-        this.TOTAL_COST -= ppCost;
+        this.TOTAL_COST += ppCost;
         this.TOTAL_AREA -= ppArea;
         this.TOTAL_EMISSION -= ppEmission;
     }
@@ -83,10 +86,11 @@ public class Score
 
     public bool isCompleted()
     {
-        if (this.TOTAL_ENERGY >= this.ENERGY_THRESHOLD)
-        {
+        if (this.TOTAL_ENERGY >= this.ENERGY_THRESHOLD )        {
             return true;
         }
         return false;
     }
+
+
 }
