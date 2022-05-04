@@ -36,7 +36,8 @@ public class MainGrid
         GameObject gridContainer,
         GameObject scoreBoardScore,
         Sprite[] IM,
-        Func<Vector3, int, float, float, bool> regionfunction
+        Func<Vector3, int, float, float, bool> regionfunction,
+        Score score
     )
     {
         this.isInsideRegion = new REGION_FUNCTION(regionfunction);
@@ -119,7 +120,7 @@ public class MainGrid
             0
         );
         //Draw.DrawLine(gridEndY, gridEndX, Color.black, 0.01f);
-        this.SCORE = new Score(10f,100f,20f);
+        this.SCORE = score;
         this.SCOREBOARD_SCORE = scoreBoardScore;
 
         this.SOLAR_IM = IM[0];

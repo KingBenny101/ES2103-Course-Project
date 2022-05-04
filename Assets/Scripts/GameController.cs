@@ -73,7 +73,8 @@ public class GameController : MonoBehaviour
                     GridContainer,
                     scoreBoardScore,
                     S,
-                    REGIONS.level1
+                    REGIONS.level1,
+                    new Score(275000,100,5)
                 );
 
                 break;
@@ -85,7 +86,8 @@ public class GameController : MonoBehaviour
                     GridContainer,
                     scoreBoardScore,
                     S,
-                    REGIONS.level2
+                    REGIONS.level2,
+                    new Score(275000,100,5)
                 );
                 break;
             case 3:
@@ -96,7 +98,8 @@ public class GameController : MonoBehaviour
                     GridContainer,
                     scoreBoardScore,
                     S,
-                    REGIONS.level3
+                    REGIONS.level3,
+                    new Score(275000,100,5)
                 );
                 break;
             case 4:
@@ -107,7 +110,8 @@ public class GameController : MonoBehaviour
                     GridContainer,
                     scoreBoardScore,
                     S,
-                    REGIONS.level4
+                    REGIONS.level4,
+                    new Score(275000,100,5)
                 );
                 break;
             case 5:
@@ -118,7 +122,8 @@ public class GameController : MonoBehaviour
                     GridContainer,
                     scoreBoardScore,
                     S,
-                    REGIONS.level5
+                    REGIONS.level5,
+                    new Score(275000,100,5)
                 );
                 break;
         }
@@ -128,27 +133,27 @@ public class GameController : MonoBehaviour
 
         var btn = INVENTORY.transform.GetChild(0).gameObject;
         var pp = btn.AddComponent<PowerPlant>();
-        pp.Init(1, 2, 3, 4);
+        pp.Init(7, 5, 4000, 0.04f);
 
         btn = INVENTORY.transform.GetChild(1).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(5, 6, 7, 8);
+        pp.Init(7, 3, 8180, 0.011f);
 
         btn = INVENTORY.transform.GetChild(2).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(9, 10, 11, 12);
+        pp.Init(25, 0.75f, 23740, 0.122f);
 
         btn = INVENTORY.transform.GetChild(3).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(13, 14, 15, 16);
+        pp.Init(7, 3, 10685, 0.024f);
 
         btn = INVENTORY.transform.GetChild(4).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(17, 18, 19, 20);
+        pp.Init(25, 3.3f, 24000, 0.003f);
 
         btn = INVENTORY.transform.GetChild(5).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(21, 22, 23, 24);
+        pp.Init(6, 15, 18000, 0.95f);
     }
 
     public void Update()
