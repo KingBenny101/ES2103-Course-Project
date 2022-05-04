@@ -324,7 +324,6 @@ public class PowerPlantDetailsController
         ppEnergy = ff[2];
         ppEmission = ff[3];
 
-        this.GRID.SCORE.calculateScore();
 
         string score =
             $@"Current Region : {inx + 1}{n}Power Plant{n}Type : {ppType}{n}Energy : {ppEnergy}{n}Area : {ppArea}{n}Cost : {ppCost}{n}Emission : {ppEmission}";
@@ -332,7 +331,7 @@ public class PowerPlantDetailsController
 
         GameObject scoreBoardScore = this.GRID.SCOREBOARD_SCORE.transform.GetChild(0).gameObject;
         scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text =
-            $@"Energy{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_ENERGY)}/{this.GRID.SCORE.ENERGY_THRESHOLD}{n}{n}{this.GRID.SCORE.TOTAL_COST}/{this.GRID.SCORE.COST_THRESHOLD}{n}{n}{this.GRID.SCORE.TOTAL_EMISSION}";
+            $@"{n}Energy{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_ENERGY)}/{this.GRID.SCORE.ENERGY_THRESHOLD}{n}{n}Cost{n}{this.GRID.SCORE.TOTAL_COST}/{this.GRID.SCORE.COST_THRESHOLD}{n}{n}Emission{n}{this.GRID.SCORE.TOTAL_EMISSION}";
 
         GameObject powerPlantPreview = this.SCOREBOARD.transform.GetChild(1).gameObject;
         switch (id)
@@ -369,6 +368,7 @@ public class PowerPlantDetailsController
             255
         );
 
+        this.GRID.SCORE.calculateScore();
         if (this.GRID.SCORE.isCompleted())
         {
             this.GRID.WIN = true;

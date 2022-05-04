@@ -126,137 +126,126 @@ public class GameController : MonoBehaviour
         t = new Timer(TimeDisplay, 300f);
         t.StartTime();
 
+        var btn = INVENTORY.transform.GetChild(0).gameObject;
+        var pp = btn.AddComponent<PowerPlant>();
+        pp.Init(1, 2, 3, 4);
 
+        btn = INVENTORY.transform.GetChild(1).gameObject;
+        pp = btn.AddComponent<PowerPlant>();
+        pp.Init(5, 6, 7, 8);
 
+        btn = INVENTORY.transform.GetChild(2).gameObject;
+        pp = btn.AddComponent<PowerPlant>();
+        pp.Init(9, 10, 11, 12);
 
+        btn = INVENTORY.transform.GetChild(3).gameObject;
+        pp = btn.AddComponent<PowerPlant>();
+        pp.Init(13, 14, 15, 16);
 
-                var btn = INVENTORY.transform.GetChild(0).gameObject;
-                var pp = btn.AddComponent<PowerPlant>();
-                pp.Init(1,2,3,4);
-                
+        btn = INVENTORY.transform.GetChild(4).gameObject;
+        pp = btn.AddComponent<PowerPlant>();
+        pp.Init(17, 18, 19, 20);
 
-                
-                btn = INVENTORY.transform.GetChild(1).gameObject;
-                pp = btn.AddComponent<PowerPlant>();
-                pp.Init(5,6,7,8);
-                
-                
-
-                
-                btn = INVENTORY.transform.GetChild(2).gameObject;
-                pp = btn.AddComponent<PowerPlant>();
-                pp.Init(9,10,11,12);
-                
-                
-
-                
-                btn = INVENTORY.transform.GetChild(3).gameObject;
-                pp = btn.AddComponent<PowerPlant>();
-                pp.Init(13,14,15,16);
-                
-                
-
-                
-                btn = INVENTORY.transform.GetChild(4).gameObject;
-                pp = btn.AddComponent<PowerPlant>();
-                pp.Init(17,18,19,20);
-                
-                
-                btn = INVENTORY.transform.GetChild(5).gameObject;
-                pp = btn.AddComponent<PowerPlant>();
-                pp.Init(21,22,23,24);
-                
-                
-                
+        btn = INVENTORY.transform.GetChild(5).gameObject;
+        pp = btn.AddComponent<PowerPlant>();
+        pp.Init(21, 22, 23, 24);
     }
 
     public void Update()
-    {   
-
+    {
         CheckFeasibilityAndUpdate();
 
         if ((this.grid.WIN && Time.timeScale == 1) || t.timerIsRunning == false)
         {
-            END_GAME_CHOICE.SetActive(true);
-            Time.timeScale = 0;
-            //Main.gameObject.SetActive(false);
-            DisableEnableInventoryBtn(1);
-
-            this.grid.CLICKABLE = false;
-
+            if (Input.GetMouseButton(0) == false && this.grid.SCORE.isCompleted())
+            {
+                END_GAME_CHOICE.SetActive(true);
+                Time.timeScale = 0;
+                DisableEnableInventoryBtn(1);
+                Debug.Log(this.grid.SCORE.isCompleted());
+                this.grid.CLICKABLE = false;
+            }
         }
         t.UpdateTime();
     }
 
+    public void CheckFeasibilityAndUpdate()
+    {
+        int ind = INVENTORY.transform.childCount;
+        ind -= 1;
+        for (int i = 0; i < ind; i++)
+        {
+            var child = INVENTORY.transform.GetChild(i);
 
-    public void CheckFeasibilityAndUpdate(){
-        int ind = INVENTORY.transform.childCount;     
-        ind -=1;  
-        for(int i = 0; i < ind;i++){
-            var child  = INVENTORY.transform.GetChild(i);
-            
-            if(child.GetComponent<PowerPlant>().COST > this.grid.SCORE.TOTAL_COST || child.GetComponent<PowerPlant>().EMISSION > (this.grid.SCORE.EMISSION_THRESHOLD-this.grid.SCORE.TOTAL_EMISSION))
+            if (
+                child.GetComponent<PowerPlant>().COST > this.grid.SCORE.TOTAL_COST
+                || child.GetComponent<PowerPlant>().EMISSION
+                    > (this.grid.SCORE.EMISSION_THRESHOLD - this.grid.SCORE.TOTAL_EMISSION)
+            )
             {
                 child.GetComponent<UnityEngine.UI.Button>().interactable = false;
-            }else {
+            }
+            else
+            {
                 child.GetComponent<UnityEngine.UI.Button>().interactable = true;
-
             }
         }
     }
 
-    public void ContinueGame(){
+    public void ContinueGame()
+    {
         DisableEnableInventoryBtn(0);
         this.grid.CLICKABLE = true;
-        //Time.timeScale = 1;
-        
+        this.grid.WIN = false;
+        END_GAME_CHOICE.SetActive(false);
+        t.StartTime();
     }
 
-    public void DisableEnableInventoryBtn(int c){
-        switch(c){
+    public void DisableEnableInventoryBtn(int c)
+    {
+        switch (c)
+        {
             case 1:
-                foreach(Transform child in INVENTORY.transform){
-                    Debug.Log(child.transform);
+                foreach (Transform child in INVENTORY.transform)
+                {
 
                     child.GetComponent<UnityEngine.UI.Button>().interactable = false;
                 }
-            break;
+                break;
             default:
-                foreach(Transform child in INVENTORY.transform){
-                    Debug.Log(child.transform);
+                foreach (Transform child in INVENTORY.transform)
+                {
 
                     child.GetComponent<UnityEngine.UI.Button>().interactable = true;
                 }
-            break;
+                break;
         }
     }
-    public void ShowGameOverScreen(){
 
-            GameOver.SetActive(true);
-            Main.gameObject.SetActive(false);
-            GameObject scoreDisplay = GameOver.transform
-                .GetChild(0)
-                .transform.GetChild(1)
-                .gameObject;
-            GameObject tableDisplay = GameOver.transform
-                .GetChild(0)
-                .transform.GetChild(2)
-                .gameObject;
+    public void ShowGameOverScreen()
+    {
+        GameOver.SetActive(true);
+        Main.gameObject.SetActive(false);
+        GameObject scoreDisplay = GameOver.transform.GetChild(0).transform.GetChild(1).gameObject;
+        GameObject tableDisplay = GameOver.transform.GetChild(0).transform.GetChild(2).gameObject;
 
-            string n = "\n";
-            scoreDisplay.GetComponent<UnityEngine.UI.Text>().text =
-                $@"YOUR SCORE{n}{this.grid.SCORE.TOTAL_SCORE}";
-            tableDisplay.GetComponent<UnityEngine.UI.Text>().text =
-                $@"Money spent{n}INR {this.grid.SCORE.COST_THRESHOLD-this.grid.SCORE.TOTAL_COST}{n}{n}LAND Occupied{n}{this.grid.SCORE.TOTAL_AREA} Acre{n}{n}Emissions{n}{this.grid.SCORE.TOTAL_EMISSION} KG/Kwh";
-        
+        string n = "\n";
+        scoreDisplay.GetComponent<UnityEngine.UI.Text>().text =
+            $@"YOUR SCORE{n}{this.grid.SCORE.TOTAL_SCORE}";
+        tableDisplay.GetComponent<UnityEngine.UI.Text>().text =
+            $@"Money spent{n}INR {this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST}{n}{n}LAND Occupied{n}{this.grid.SCORE.TOTAL_AREA} Acre{n}{n}Emissions{n}{this.grid.SCORE.TOTAL_EMISSION} KG/Kwh";
     }
+
     public void CreateNewPowerPlant(int choice)
     {
         GameObject go;
         PowerPlant pp;
         GameObject btn;
         PowerPlant btnPP;
-        float c,ar,e,em;
+        float c,
+            ar,
+            e,
+            em;
         switch (choice)
         {
             case 1:
@@ -270,10 +259,10 @@ public class GameController : MonoBehaviour
                 e = btnPP.ENERGY;
                 em = btnPP.EMISSION;
                 ar = btnPP.AREA;
-                pp.Init(c,ar,e,em);
+                pp.Init(c, ar, e, em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
-                
+
                 break;
             case 2:
                 go = Instantiate(PowerPlantWind);
@@ -286,7 +275,7 @@ public class GameController : MonoBehaviour
                 e = btnPP.ENERGY;
                 em = btnPP.EMISSION;
                 ar = btnPP.AREA;
-                pp.Init(c,ar,e,em);
+                pp.Init(c, ar, e, em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
@@ -301,7 +290,7 @@ public class GameController : MonoBehaviour
                 e = btnPP.ENERGY;
                 em = btnPP.EMISSION;
                 ar = btnPP.AREA;
-                pp.Init(c,ar,e,em);
+                pp.Init(c, ar, e, em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
@@ -316,7 +305,7 @@ public class GameController : MonoBehaviour
                 e = btnPP.ENERGY;
                 em = btnPP.EMISSION;
                 ar = btnPP.AREA;
-                pp.Init(c,ar,e,em);
+                pp.Init(c, ar, e, em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
@@ -331,7 +320,7 @@ public class GameController : MonoBehaviour
                 e = btnPP.ENERGY;
                 em = btnPP.EMISSION;
                 ar = btnPP.AREA;
-                pp.Init(c,ar,e,em);
+                pp.Init(c, ar, e, em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
@@ -346,7 +335,7 @@ public class GameController : MonoBehaviour
                 e = btnPP.ENERGY;
                 em = btnPP.EMISSION;
                 ar = btnPP.AREA;
-                pp.Init(c,ar,e,em);
+                pp.Init(c, ar, e, em);
                 go.GetComponent<Dragger>().PP = pp;
                 this.grid.SCORE.addPowerPlant(pp);
                 break;
