@@ -13,7 +13,7 @@ public class Score
     public float TOTAL_AREA;
     public float TOTAL_EMISSION;
 
-    private float[] WEIGHTS;
+
 
     public Score(float energyThreshold,float costThreshold, float emissionThreshold)
     {
@@ -25,11 +25,7 @@ public class Score
         this.TOTAL_COST = costThreshold;
         this.TOTAL_AREA = 0f;
         this.TOTAL_EMISSION = 0f;
-        this.WEIGHTS = new float[4];
-        this.WEIGHTS[0] = 1f;
-        this.WEIGHTS[1] = 1f;
-        this.WEIGHTS[2] = 1f;
-        this.WEIGHTS[3] = 1f;
+     
     }
 
     public void addPowerPlant(PowerPlant pp)
@@ -74,15 +70,23 @@ public class Score
     {
         var te = this.TOTAL_ENERGY;
         var tc = this.TOTAL_COST;
-        var ta = this.TOTAL_AREA;
         var tem = this.TOTAL_EMISSION;
+        var me = this.EMISSION_THRESHOLD;
+        var mc = this.COST_THRESHOLD;
+        var men = this.ENERGY_THRESHOLD;
+        float temp=((te-men)/(men));
+        if (temp>=0.09)  {
+            temp=1;
+        }
+        
+
         this.TOTAL_SCORE =
-            this.WEIGHTS[0] * te
-            + this.WEIGHTS[1] * tc
-            + this.WEIGHTS[2] * ta
-            + this.WEIGHTS[3] * tem;
+            2250 *temp 
+            + 1000 *((mc-tc)/(mc))
+            + 1750 *((me-tem)/(me));
         return this.TOTAL_SCORE;
     }
+
 
     public bool isCompleted()
     {
