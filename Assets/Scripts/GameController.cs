@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level1,
-                    new Score(275000,100,5)
+                    new Score(275000,300,5)
                 );
 
                 break;
