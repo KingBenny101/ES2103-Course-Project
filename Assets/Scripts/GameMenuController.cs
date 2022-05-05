@@ -15,25 +15,23 @@ public class GameMenuController : MonoBehaviour
     {
         Debug.Log($"Loading level {level}");
         Supreme.LEVEL_NUMBER = level;
-        if (level == 1)
+        switch (level)
         {
-            SceneManager.LoadScene("Level1");
-        }
-        if (level == 2)
-        {
-            SceneManager.LoadScene("Level2");
-        }
-        if (level == 3)
-        {
-            SceneManager.LoadScene("Level3");
-        }
-        if (level == 4)
-        {
-            SceneManager.LoadScene("Level4");
-        }
-        if (level == 5)
-        {
-            SceneManager.LoadScene("Level5");
+            case 1:
+                SceneManager.LoadScene("Level1");
+                break;
+            case 2:
+                SceneManager.LoadScene("Level2");
+                break;
+            case 3:
+                SceneManager.LoadScene("Level3");
+                break;
+            case 4:
+                SceneManager.LoadScene("Level4");
+                break;
+            case 5:
+                SceneManager.LoadScene("Level5");
+                break;
         }
     }
 }

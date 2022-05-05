@@ -90,31 +90,31 @@ public class PowerPlantDetailsController
 
                     case 2:
                         // Wind
-                        fe = 0.6f;
-                        fc = 2f;
+                        fe = 0.8f;
+                        fc = 1f;
                         break;
 
                     case 3:
                         // GeoThermal
                         fe = 0.6f;
-                        fc = 2f;
+                        fc = 1f;
                         break;
 
                     case 4:
                         // Hydro
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 5:
                         // Nuclear
-                        fe = 1f;
+                        fe = 0.8f;
                         fc = 1f;
                         break;
 
                     case 6:
                         // Thermal
-                        fe = 1f;
+                        fe = 0.9f;
                         fc = 1f;
                         break;
                 }
@@ -132,19 +132,19 @@ public class PowerPlantDetailsController
                     case 1:
                         // Solar
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 2:
                         // Wind
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 3:
                         // GeoThermal
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 4:
@@ -156,13 +156,13 @@ public class PowerPlantDetailsController
                     case 5:
                         // Nuclear
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 6:
                         // Thermal
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
                 }
 
@@ -178,14 +178,14 @@ public class PowerPlantDetailsController
                 {
                     case 1:
                         // Solar
-                        fe = 0.3f;
-                        fc = 5f;
+                        fe = 0.6f;
+                        fc = 1f;
                         break;
 
                     case 2:
                         // Wind
-                        fe = 0.3f;
-                        fc = 5f;
+                        fe = 0.6f;
+                        fc = 1f;
                         break;
 
                     case 3:
@@ -197,19 +197,19 @@ public class PowerPlantDetailsController
                     case 4:
                         // Hydro
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 5:
                         // Nuclear
                         fe = 1f;
-                        fc = 5f;
+                        fc = 1f;
                         break;
 
                     case 6:
                         // Thermal
-                        fe = 1f;
-                        fc = 5f;
+                        fe = 0.8f;
+                        fc = 1f;
                         break;
                 }
 
@@ -225,8 +225,8 @@ public class PowerPlantDetailsController
                 {
                     case 1:
                         // Solar
-                        fe = 0.6f;
-                        fc = 2f;
+                        fe = 0.8f;
+                        fc = 1f;
                         break;
 
                     case 2:
@@ -238,13 +238,13 @@ public class PowerPlantDetailsController
                     case 3:
                         // GeoThermal
                         fe = 0.3f;
-                        fc = 2f;
+                        fc = 1f;
                         break;
 
                     case 4:
                         // Hydro
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 5:
@@ -273,37 +273,37 @@ public class PowerPlantDetailsController
                     case 1:
                         // Solar
                         fe = 0.6f;
-                        fc = 2f;
+                        fc = 1f;
                         break;
 
                     case 2:
                         // Wind
-                        fe = 0.3f;
-                        fc = 2f;
+                        fe = 0.5f;
+                        fc = 1f;
                         break;
 
                     case 3:
                         // GeoThermal
                         fe = 0f;
-                        fc = 5f;
+                        fc = 1f;
                         break;
 
                     case 4:
                         // Hydro
                         fe = 0f;
-                        fc = 10f;
+                        fc = 1f;
                         break;
 
                     case 5:
                         // Nuclear
                         fe = 1f;
-                        fc = 5f;
+                        fc = 1f;
                         break;
 
                     case 6:
                         // Thermal
                         fe = 1f;
-                        fc = 5f;
+                        fc = 1f;
                         break;
                 }
                 this.GRID.SCORE.delPowerPlant(pp);
@@ -323,7 +323,6 @@ public class PowerPlantDetailsController
         ppArea = ff[1];
         ppEnergy = ff[2];
         ppEmission = ff[3];
-
 
         string score =
             $@"Current Region : {inx + 1}{n}Power Plant{n}Type : {ppType}{n}Energy : {ppEnergy}{n}Area : {ppArea}{n}Cost : {ppCost}{n}Emission : {ppEmission}";

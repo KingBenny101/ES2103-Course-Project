@@ -395,6 +395,11 @@ public class GameController : MonoBehaviour
         Main.gameObject.SetActive(true);
     }
 
+    public void RestartGame(){
+        Debug.Log("Restarting Game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void ExitToMainMenu()
     {
         Debug.Log("Quitting to Main Menu.");

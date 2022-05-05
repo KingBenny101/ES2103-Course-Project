@@ -98,8 +98,8 @@ public class MainGrid
                     }
                 }
                 co = this.regionColours[inx];
-                //Draw.DrawLine(lineStart, lineEndX, co, 0.01f);
-                //Draw.DrawLine(lineStart, lineEndY, co, 0.01f);
+                Draw.DrawLine(lineStart, lineEndX, co, 0.01f);
+                Draw.DrawLine(lineStart, lineEndY, co, 0.01f);
             }
         }
 
@@ -108,18 +108,18 @@ public class MainGrid
             gridStart.y + gridArray.GetLength(1) * gridCellLength,
             0
         );
-        //Draw.DrawLine(
-        //     gridStart + new Vector3(gridArray.GetLength(0) * gridCellLength, 0, 0),
-        //     gridEndY,
-        //     Color.black,
-        //     0.01f
-        // );
+        Draw.DrawLine(
+            gridStart + new Vector3(gridArray.GetLength(0) * gridCellLength, 0, 0),
+            gridEndY,
+            Color.black,
+            0.01f
+        );
         Vector3 gridEndX = new Vector3(
             gridStart.x,
             gridStart.y + gridArray.GetLength(1) * gridCellLength,
             0
         );
-        //Draw.DrawLine(gridEndY, gridEndX, Color.black, 0.01f);
+        Draw.DrawLine(gridEndY, gridEndX, Color.black, 0.01f);
         this.SCORE = score;
         this.SCOREBOARD_SCORE = scoreBoardScore;
 
