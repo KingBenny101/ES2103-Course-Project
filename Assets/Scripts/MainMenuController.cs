@@ -18,6 +18,13 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("HowToPlay");
     }
 
+        public void About()
+    {
+        Debug.Log("Loading About.");
+        SceneManager.LoadScene("About");
+    }
+
+
     public void QuitGame()
     {
         Debug.Log("Quiting Game.");
