@@ -79,9 +79,9 @@ public class Score
         var men = this.ENERGY_THRESHOLD;
 
         this.TOTAL_SCORE =
-            2250 
-            + 1000 *((mc-tc)/(mc))
-            + 1750 *((me-tem)/(me));
+            2250*((te)/(men)) 
+            + 1500 *((mc-tc)/(mc))
+            + 1250 *((me-tem)/(me));
         return this.TOTAL_SCORE;
     }
 

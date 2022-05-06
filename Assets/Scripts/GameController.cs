@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level1,
-                    new Score(250000, 150, 3, 0)
+                    new Score(135000, 150, 3, 0)
                 );
 
                 break;
@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level2,
-                    new Score(69000, 80, 3, 0)
+                    new Score(142000, 150, 3, 0)
                 );
                 break;
             case 3:
@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level3,
-                    new Score(60000, 60, 3, 0)
+                    new Score(150000, 160, 3, 0)
                 );
                 break;
             case 4:
@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level4,
-                    new Score(120000, 120, 3, 0)
+                    new Score(145000, 140, 3, 0)
                 );
                 break;
             case 5:
@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level5,
-                    new Score(135000, 125, 3, 0)
+                    new Score(150000, 140, 3, 0)
                 );
                 break;
         }
@@ -145,7 +145,7 @@ public class GameController : MonoBehaviour
 
         btn = INVENTORY.transform.GetChild(3).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(7, 3, 10685, 0.024f);
+        pp.Init(8, 3, 10685, 0.024f);
 
         btn = INVENTORY.transform.GetChild(4).gameObject;
         pp = btn.AddComponent<PowerPlant>();
@@ -169,6 +169,9 @@ public class GameController : MonoBehaviour
                 DisableEnableInventoryBtn(1);
                 Debug.Log(this.grid.SCORE.isCompleted());
                 this.grid.CLICKABLE = false;
+            }
+            else if(t.timerIsRunning == false) {
+                ShowGameOverScreen();
             }
         }
         t.UpdateTime();
@@ -364,7 +367,7 @@ public class GameController : MonoBehaviour
             GridContainer.GetComponent<SpriteRenderer>().bounds.extents.x - _Offset.x * 0.5f;
         go.GetComponent<Dragger>().Min.y =
             -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;
-        go.GetComponent<BoxCollider2D>().size = new Vector2(4f, 4f);
+        go.GetComponent<BoxCollider2D>().size = new Vector2(7f, 7f);
         var pps = go.GetComponent<Dragger>();
 
         float maxX = go.GetComponent<Dragger>().Max.x;
