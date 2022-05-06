@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-
     public void SelectLevel()
     {
         Debug.Log("Starting Game.");
@@ -18,12 +17,11 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("HowToPlay");
     }
 
-        public void About()
+    public void About()
     {
         Debug.Log("Loading About.");
         SceneManager.LoadScene("About");
     }
-
 
     public void QuitGame()
     {
