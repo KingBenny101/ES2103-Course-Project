@@ -417,8 +417,10 @@ public class PowerPlantDetailsController
         ppEnergy = ff[2];
         ppEmission = ff[3];
 
+        string regionName = GetRegionFromId(inx);
+
         string score =
-            $@"Current Region : {inx + 1}{n}Power Plant{n}Type : {ppType}{n}Energy : {ppEnergy}{n}Area : {ppArea}{n}Cost : {ppCost}{n}Emission : {ppEmission}";
+            $@"Current Region : {regionName}{n}Power Plant{n}Type : {ppType}{n}Energy : {ppEnergy}{n}Area : {ppArea}{n}Cost : {ppCost}{n}Emission : {ppEmission}";
         scoreBoardText.GetComponent<UnityEngine.UI.Text>().text = score;
 
         GameObject scoreBoardScore = this.GRID.SCOREBOARD_SCORE.transform.GetChild(0).gameObject;
@@ -465,5 +467,34 @@ public class PowerPlantDetailsController
         {
             this.GRID.WIN = true;
         }
+    }
+
+    private string GetRegionFromId(int id){
+        string s;
+
+        switch(id){
+            case 0:
+            s = "Desert";
+            break;
+            case 1:
+            s = "Water";
+            break;
+            case 2:
+            s = "Plateau";
+            break;
+            case 3:
+            s = "Plains";
+            break;
+            case 4:
+            s = "City";
+            break;
+            case 5:
+            s = "Mountain";
+            break;
+            default:
+            s = "Water";
+            break;
+        }
+        return s;
     }
 }

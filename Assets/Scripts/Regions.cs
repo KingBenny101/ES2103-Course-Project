@@ -197,6 +197,7 @@ public class Regions
         float x,
             y,
             cy,
+            cy1,
             cy3,
             cy2;
         x = pos.x;
@@ -213,14 +214,16 @@ public class Regions
         {
             case 1:
                 cy = (float)(x * Mathf.Exp(x - 5f) - 0.51f + 0.13f*Mathf.Sin(7.5f*x) - 0.05*Mathf.Cos(6.7f*x)); //desert
-                if (y < cy)
+                cy1  = (float)((x-1)*(Mathf.Log(x + 9f))+ 3.5f + 0.1*Mathf.Sin(10*x) + 0.2*Mathf.Cos(7*x));
+                if (y < cy && y < cy1)
                 {
                     return true;
                 }
                 break;
             case 6:
                 cy = x * Mathf.Log(x + 10f) + 6.7f; //mountains
-                if (y >= cy)
+                cy1 = (float)(Mathf.Exp((-1/3f) * (x - 1.5f))) +0.045f*Mathf.Cos(13*x) + 0.087f*Mathf.Sin(x*7.8f) +1.5f;
+                if (y >= cy && y < cy1 )
                 {
                     return true;
                 }
@@ -234,7 +237,7 @@ public class Regions
                 }
                 break;
             case 3:
-                cy = (float)(Mathf.Exp((-1/3f) * x - 0.5f)) +0.045f*Mathf.Cos(13*x) + 1.5f;
+                cy = (float)(Mathf.Exp((-1/3f) * (x - 1.5f))) +0.045f*Mathf.Cos(13*x)+ 0.087f*Mathf.Sin(x*7.8f) + 1.5f;
                 if (y >= cy)
                 {
                     return true;
@@ -243,7 +246,7 @@ public class Regions
             case 5:
                 cy = (float)(x * Mathf.Exp(x - 5f) - 0.51f + 0.13f*Mathf.Sin(7.5f*x) - 0.05*Mathf.Cos(6.7f*x)); 
                 cy2 = (float)((x-1)*(Mathf.Log(x + 9f))+ 3.5f + 0.1*Mathf.Sin(10*x) + 0.2*Mathf.Cos(7*x));
-                cy3 =(float)(Mathf.Exp((-1/3f) * x - 0.5f)) +0.045f*Mathf.Cos(13*x) + 1.5f;
+                cy3 =(float)(Mathf.Exp((-1/3f) * (x - 1.5f))) +0.045f*Mathf.Cos(13*x)+ 0.087f*Mathf.Sin(x*7.8f) + 1.5f;
                 if(y>cy&&y<cy2&&y<cy3){
                    return true;
                 }
