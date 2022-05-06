@@ -107,7 +107,7 @@ public class Regions
                 break;
             case 2:
                 cy = (-x) * Mathf.Sin(x - 2);
-                cy2 = (-x + 0.6f) * Mathf.Sin(x + 4.5f) + 2f; //city
+                cy2 = (-x + 0.6f) * Mathf.Sin(x + 4.5f) + 2f; //water
                 if (y >= cy && y <= cy2)
                 {
                     return true;

@@ -12,10 +12,11 @@ public class Score
     public float TOTAL_COST;
     public float TOTAL_AREA;
     public float TOTAL_EMISSION;
+    public float INITIAL_EMISSION;
 
 
 
-    public Score(float energyThreshold,float costThreshold, float emissionThreshold)
+    public Score(float energyThreshold,float costThreshold, float emissionThreshold, float initialEmission)
     {
         this.ENERGY_THRESHOLD = energyThreshold;
         this.COST_THRESHOLD = costThreshold;
@@ -24,7 +25,9 @@ public class Score
         this.TOTAL_SCORE = 0f;
         this.TOTAL_COST = costThreshold;
         this.TOTAL_AREA = 0f;
-        this.TOTAL_EMISSION = 0f;
+        this.TOTAL_EMISSION = initialEmission;
+        this.INITIAL_EMISSION = initialEmission;
+
      
     }
 
@@ -74,14 +77,9 @@ public class Score
         var me = this.EMISSION_THRESHOLD;
         var mc = this.COST_THRESHOLD;
         var men = this.ENERGY_THRESHOLD;
-        float temp=((te-men)/(men));
-        if (temp>=0.09)  {
-            temp=1;
-        }
-        
 
         this.TOTAL_SCORE =
-            2250 *temp 
+            2250 
             + 1000 *((mc-tc)/(mc))
             + 1750 *((me-tem)/(me));
         return this.TOTAL_SCORE;
@@ -90,7 +88,8 @@ public class Score
 
     public bool isCompleted()
     {
-        if (this.TOTAL_ENERGY >= this.ENERGY_THRESHOLD )        {
+        if (this.TOTAL_ENERGY >= this.ENERGY_THRESHOLD )
+        {
             return true;
         }
         return false;

@@ -27,6 +27,8 @@ public class Dragger : MonoBehaviour
     public PowerPlant PP;
     public int powerPlantId;
 
+    
+
     private void Update()
     {
         Vector3 pos = transform.position;
@@ -37,33 +39,50 @@ public class Dragger : MonoBehaviour
     }
 
     void OnMouseDown()
-    {if(grid.CLICKABLE){
-        _dragOffset = transform.position - GetMousePos();
-        GC.LastSelected = this.gameObject;
+    {
+        if (grid.CLICKABLE)
+        {
+            _dragOffset = transform.position - GetMousePos();
+            GC.LastSelected = this.gameObject;
+            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            setAndUpdatePP();
+        }
+    }
 
-        setAndUpdatePP();}
+    void OnMouseUp()
+    {
+        StartCoroutine(SetAsKinematic());
+    }
+
+    IEnumerator SetAsKinematic(){
+        this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        yield return new WaitForSeconds(1f);
+
     }
 
     void OnMouseDrag()
-    {if(grid.CLICKABLE){
-        Vector3 pos = GetMousePos() + _dragOffset;
-        Vector3 newPos = Vector3.zero;
-        pos.x = Mathf.Clamp(pos.x, Min.x, Max.x);
-        pos.y = Mathf.Clamp(pos.y, Min.y, Max.y);
+    {
+        if (grid.CLICKABLE)
+        {
+            Vector3 pos = GetMousePos() + _dragOffset;
+            Vector3 newPos = Vector3.zero;
+            pos.x = Mathf.Clamp(pos.x, Min.x, Max.x);
+            pos.y = Mathf.Clamp(pos.y, Min.y, Max.y);
 
-        transform.position = pos;
+            transform.position = pos;
 
-        float gridCellSize;
-        gridCellSize = gridSize / gridCellCount;
+            float gridCellSize;
+            gridCellSize = gridSize / gridCellCount;
 
-        var currentPos = transform.position;
-        transform.position = new Vector3(
-            Mathf.Round(currentPos.x / gridSize * gridCellCount) * gridCellSize,
-            Mathf.Round(currentPos.y / gridSize * gridCellCount) * gridCellSize,
-            currentPos.z
-        );
+            var currentPos = transform.position;
+            transform.position = new Vector3(
+                Mathf.Round(currentPos.x / gridSize * gridCellCount) * gridCellSize,
+                Mathf.Round(currentPos.y / gridSize * gridCellCount) * gridCellSize,
+                currentPos.z
+            );
 
-        setAndUpdatePP();}
+            setAndUpdatePP();
+        }
     }
 
     Vector3 GetMousePos()

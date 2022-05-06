@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level1,
-                    new Score(275000,300,5)
+                    new Score(150000,300,3,1)
                 );
 
                 break;
@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level2,
-                    new Score(275000,100,5)
+                    new Score(275000,100,3,1.5f)
                 );
                 break;
             case 3:
@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level3,
-                    new Score(275000,100,5)
+                    new Score(275000,100,3,1.5f)
                 );
                 break;
             case 4:
@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level4,
-                    new Score(275000,100,5)
+                    new Score(275000,100,3,2)
                 );
                 break;
             case 5:
@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level5,
-                    new Score(275000,100,5)
+                    new Score(275000,100,3,2)
                 );
                 break;
         }
@@ -149,7 +149,7 @@ public class GameController : MonoBehaviour
 
         btn = INVENTORY.transform.GetChild(4).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(25, 3.3f, 24000, 0.003f);
+        pp.Init(25, 3.3f, 24000, 0.100f);
 
         btn = INVENTORY.transform.GetChild(5).gameObject;
         pp = btn.AddComponent<PowerPlant>();
@@ -238,7 +238,7 @@ public class GameController : MonoBehaviour
         scoreDisplay.GetComponent<UnityEngine.UI.Text>().text =
             $@"YOUR SCORE{n}{this.grid.SCORE.TOTAL_SCORE}";
         tableDisplay.GetComponent<UnityEngine.UI.Text>().text =
-            $@"Money spent{n}INR {this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST}{n}{n}LAND Occupied{n}{this.grid.SCORE.TOTAL_AREA} Acre{n}{n}Emissions{n}{this.grid.SCORE.TOTAL_EMISSION} KG/Kwh";
+            $@"Money spent{n}INR {this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST}{n}{n}LAND Occupied{n}{this.grid.SCORE.TOTAL_AREA} Acre{n}{n}Emission Rate{n}{this.grid.SCORE.TOTAL_EMISSION} KG/3.6S";
     }
 
     public void CreateNewPowerPlant(int choice)
@@ -348,6 +348,7 @@ public class GameController : MonoBehaviour
         go.transform.SetParent(Main);
         go.transform.localScale = new Vector3(0.035F, 0.035F, 1);
         go.GetComponent<Dragger>().GC = GC;
+        go.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         go.GetComponent<Dragger>().gridSize = GridContainer
             .GetComponent<SpriteRenderer>()
             .bounds.size.x;
@@ -366,9 +367,17 @@ public class GameController : MonoBehaviour
             -GridContainer.GetComponent<SpriteRenderer>().bounds.extents.y + _Offset.y;
         go.GetComponent<BoxCollider2D>().size = new Vector2(4f, 4f);
         var pps = go.GetComponent<Dragger>();
+
+        float maxX = go.GetComponent<Dragger>().Max.x;
+        float minX = go.GetComponent<Dragger>().Min.x;
+        float maxY =  go.GetComponent<Dragger>().Max.y;
+        float minY =  go.GetComponent<Dragger>().Min.y;
+        go.transform.position = new Vector3(Random.Range(minX,maxX),Random.Range(minY,maxY),0);
         pps.setAndUpdatePP();
     }
 
+
+    
     public void DeletePowerPlant()
     {
         Destroy(LastSelected);

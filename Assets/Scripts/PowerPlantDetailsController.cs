@@ -114,7 +114,7 @@ public class PowerPlantDetailsController
 
                     case 6:
                         // Thermal
-                        fe = 0.9f;
+                        fe = 0.7f;
                         fc = 1f;
                         break;
                 }
@@ -296,21 +296,114 @@ public class PowerPlantDetailsController
 
                     case 5:
                         // Nuclear
-                        fe = 1f;
+                        fe = 0f;
                         fc = 1f;
                         break;
 
                     case 6:
                         // Thermal
-                        fe = 1f;
+                        fe = 0f;
                         fc = 1f;
                         break;
                 }
                 this.GRID.SCORE.delPowerPlant(pp);
                 pp.setFactorValues(fc, 1f, fe, 1f);
                 this.GRID.SCORE.addPowerPlant(pp);
-
                 break;
+            case 6:
+                // Mountains
+                fe = 1f;
+                fc = 1f;
+                switch (id)
+                {
+                    case 1:
+                        // Solar
+                        fe = 0.6f;
+                        fc = 1f;
+                        break;
+
+                    case 2:
+                        // Wind
+                        fe = 0.6f;
+                        fc = 1f;
+                        break;
+
+                    case 3:
+                        // GeoThermal
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 4:
+                        // Hydro
+                        fe = 0f;
+                        fc = 1f;
+                        break;
+
+                    case 5:
+                        // Nuclear
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 6:
+                        // Thermal
+                        fe = 0.8f;
+                        fc = 1f;
+                        break;
+                }
+
+                this.GRID.SCORE.delPowerPlant(pp);
+                pp.setFactorValues(fc, 1f, fe, 1f);
+                this.GRID.SCORE.addPowerPlant(pp);
+                break;    
+            case 7:
+                // River
+                fe = 1f;
+                fc = 1f;
+                switch (id)
+                {
+                    case 1:
+                        // Solar
+                        fe = 0f;
+                        fc = 1f;
+                        break;
+
+                    case 2:
+                        // Wind
+                        fe = 0f;
+                        fc = 1f;
+                        break;
+
+                    case 3:
+                        // GeoThermal
+                        fe = 0f;
+                        fc = 1f;
+                        break;
+
+                    case 4:
+                        // Hydro
+                        fe = 1f;
+                        fc = 1f;
+                        break;
+
+                    case 5:
+                        // Nuclear
+                        fe = 0f;
+                        fc = 1f;
+                        break;
+
+                    case 6:
+                        // Thermal
+                        fe = 0f;
+                        fc = 1f;
+                        break;
+                }
+
+                this.GRID.SCORE.delPowerPlant(pp);
+                pp.setFactorValues(fc, 1f, fe, 1f);
+                this.GRID.SCORE.addPowerPlant(pp);
+                break;    
         }
 
         float ppEnergy,
