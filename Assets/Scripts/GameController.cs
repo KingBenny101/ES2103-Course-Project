@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level1,
-                    new Score(150000,300,3,1)
+                    new Score(250000, 150, 3, 0)
                 );
 
                 break;
@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level2,
-                    new Score(275000,100,3,1.5f)
+                    new Score(69000, 80, 3, 0)
                 );
                 break;
             case 3:
@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level3,
-                    new Score(275000,100,3,1.5f)
+                    new Score(60000, 60, 3, 0)
                 );
                 break;
             case 4:
@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level4,
-                    new Score(275000,100,3,2)
+                    new Score(120000, 120, 3, 0)
                 );
                 break;
             case 5:
@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level5,
-                    new Score(275000,100,3,2)
+                    new Score(135000, 125, 3, 0)
                 );
                 break;
         }
@@ -149,7 +149,7 @@ public class GameController : MonoBehaviour
 
         btn = INVENTORY.transform.GetChild(4).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(25, 3.3f, 24000, 0.100f);
+        pp.Init(25, 3.3f, 24000, 1.500f);
 
         btn = INVENTORY.transform.GetChild(5).gameObject;
         pp = btn.AddComponent<PowerPlant>();
@@ -186,6 +186,7 @@ public class GameController : MonoBehaviour
                 child.GetComponent<PowerPlant>().COST > this.grid.SCORE.TOTAL_COST
                 || child.GetComponent<PowerPlant>().EMISSION
                     > (this.grid.SCORE.EMISSION_THRESHOLD - this.grid.SCORE.TOTAL_EMISSION)
+                || (this.grid.SCORE.TOTAL_ENERGY >= this.grid.SCORE.ENERGY_THRESHOLD)
             )
             {
                 child.GetComponent<UnityEngine.UI.Button>().interactable = false;
@@ -213,14 +214,12 @@ public class GameController : MonoBehaviour
             case 1:
                 foreach (Transform child in INVENTORY.transform)
                 {
-
                     child.GetComponent<UnityEngine.UI.Button>().interactable = false;
                 }
                 break;
             default:
                 foreach (Transform child in INVENTORY.transform)
                 {
-
                     child.GetComponent<UnityEngine.UI.Button>().interactable = true;
                 }
                 break;
@@ -370,14 +369,12 @@ public class GameController : MonoBehaviour
 
         float maxX = go.GetComponent<Dragger>().Max.x;
         float minX = go.GetComponent<Dragger>().Min.x;
-        float maxY =  go.GetComponent<Dragger>().Max.y;
-        float minY =  go.GetComponent<Dragger>().Min.y;
-        go.transform.position = new Vector3(Random.Range(minX,maxX),Random.Range(minY,maxY),0);
+        float maxY = go.GetComponent<Dragger>().Max.y;
+        float minY = go.GetComponent<Dragger>().Min.y;
+        go.transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
         pps.setAndUpdatePP();
     }
 
-
-    
     public void DeletePowerPlant()
     {
         Destroy(LastSelected);
@@ -404,7 +401,8 @@ public class GameController : MonoBehaviour
         Main.gameObject.SetActive(true);
     }
 
-    public void RestartGame(){
+    public void RestartGame()
+    {
         Debug.Log("Restarting Game");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
