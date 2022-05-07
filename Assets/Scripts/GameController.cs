@@ -172,7 +172,7 @@ public class GameController : MonoBehaviour
                 this.grid.CLICKABLE = false;
             }
             else if(t.timerIsRunning == false) {
-                ShowGameOverScreen();
+                ShowGameOverScreen(true);
             }
         }
         t.UpdateTime();
@@ -230,18 +230,22 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ShowGameOverScreen()
+    public void ShowGameOverScreen(bool t = false)
     {
         GameOver.SetActive(true);
         Main.gameObject.SetActive(false);
         GameObject scoreDisplay = GameOver.transform.GetChild(0).transform.GetChild(1).gameObject;
         GameObject tableDisplay = GameOver.transform.GetChild(0).transform.GetChild(2).gameObject;
 
+        if(t){
+            scoreDisplay.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "You Lost";
+        }
+
         string n = "\n";
         scoreDisplay.GetComponent<UnityEngine.UI.Text>().text =
             $@"YOUR SCORE{n}{Mathf.Ceil(this.grid.SCORE.TOTAL_SCORE)}";
         tableDisplay.GetComponent<UnityEngine.UI.Text>().text =
-            $@"Money spent{n}INR {Mathf.Ceil(this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST)} Cr{n}{n}LAND Occupied{n}{Mathf.Ceil(this.grid.SCORE.TOTAL_AREA)} Acre{n}{n}Emission Rate{n}{Decimal.Round((decimal)this.grid.SCORE.TOTAL_EMISSION,2)} KG/3.6S";
+            $@"Money spent{n}INR {Mathf.Ceil(this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST)} Cr{n}{n}Emission Rate{n}{Decimal.Round((decimal)this.grid.SCORE.TOTAL_EMISSION,2)} KG/3.6S";
     }
 
     public void CreateNewPowerPlant(int choice)
