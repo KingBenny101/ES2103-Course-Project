@@ -3521,7 +3521,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1409016642}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: ShowGameOverScreen
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

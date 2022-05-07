@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level1,
-                    new Score(135000, 150, 3, 0)
+                    new Score(135000, 150, 55000, 0)
                 );
 
                 break;
@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level2,
-                    new Score(142000, 150, 3, 0)
+                    new Score(142000, 150, 55000, 0)
                 );
                 break;
             case 3:
@@ -100,7 +100,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level3,
-                    new Score(150000, 160, 3, 0)
+                    new Score(150000, 160, 55000, 0)
                 );
                 break;
             case 4:
@@ -112,7 +112,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level4,
-                    new Score(145000, 140, 3, 0)
+                    new Score(145000, 140, 55000, 0)
                 );
                 break;
             case 5:
@@ -124,7 +124,7 @@ public class GameController : MonoBehaviour
                     scoreBoardScore,
                     S,
                     REGIONS.level5,
-                    new Score(150000, 140, 3, 0)
+                    new Score(150000, 140, 55000, 0)
                 );
                 break;
         }
@@ -134,27 +134,27 @@ public class GameController : MonoBehaviour
 
         var btn = INVENTORY.transform.GetChild(0).gameObject;
         var pp = btn.AddComponent<PowerPlant>();
-        pp.Init(7, 5, 4000, 0.04f);
+        pp.Init(7, 5, 4000, 160f);
 
         btn = INVENTORY.transform.GetChild(1).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(7, 3, 8180, 0.011f);
+        pp.Init(7, 3, 8180, 90f);
 
         btn = INVENTORY.transform.GetChild(2).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(25, 0.75f, 23740, 0.122f);
+        pp.Init(25, 0.75f, 23740, 2896f);
 
         btn = INVENTORY.transform.GetChild(3).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(8, 3, 10685, 0.024f);
+        pp.Init(8, 3, 10685, 256f);
 
         btn = INVENTORY.transform.GetChild(4).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(25, 3.3f, 24000, 1.500f);
+        pp.Init(25, 3.3f, 24000, 36000f);
 
         btn = INVENTORY.transform.GetChild(5).gameObject;
         pp = btn.AddComponent<PowerPlant>();
-        pp.Init(6, 15, 18000, 0.95f);
+        pp.Init(6, 15, 18000, 17100f);
     }
 
     public void Update()
@@ -171,7 +171,8 @@ public class GameController : MonoBehaviour
                 Debug.Log(this.grid.SCORE.isCompleted());
                 this.grid.CLICKABLE = false;
             }
-            else if(t.timerIsRunning == false) {
+            else if (t.timerIsRunning == false)
+            {
                 ShowGameOverScreen(true);
             }
         }
@@ -237,15 +238,19 @@ public class GameController : MonoBehaviour
         GameObject scoreDisplay = GameOver.transform.GetChild(0).transform.GetChild(1).gameObject;
         GameObject tableDisplay = GameOver.transform.GetChild(0).transform.GetChild(2).gameObject;
 
-        if(t){
-            scoreDisplay.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "You Lost";
+        if (t)
+        {
+            scoreDisplay.transform.parent.gameObject.transform
+                .GetChild(0)
+                .gameObject.GetComponent<UnityEngine.UI.Text>()
+                .text = "You Lost";
         }
 
         string n = "\n";
         scoreDisplay.GetComponent<UnityEngine.UI.Text>().text =
             $@"YOUR SCORE{n}{Mathf.Ceil(this.grid.SCORE.TOTAL_SCORE)}";
         tableDisplay.GetComponent<UnityEngine.UI.Text>().text =
-            $@"Money spent{n}INR {Mathf.Ceil(this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST)} Cr{n}{n}Emission Rate{n}{Decimal.Round((decimal)this.grid.SCORE.TOTAL_EMISSION,2)} KG/day";
+            $@"Money spent{n}INR {Mathf.Ceil(this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST)} Cr{n}{n}Emission Rate{n}{Decimal.Round((decimal)this.grid.SCORE.TOTAL_EMISSION, 2)} KG/day";
     }
 
     public void CreateNewPowerPlant(int choice)
@@ -379,7 +384,11 @@ public class GameController : MonoBehaviour
         float minX = go.GetComponent<Dragger>().Min.x;
         float maxY = go.GetComponent<Dragger>().Max.y;
         float minY = go.GetComponent<Dragger>().Min.y;
-        go.transform.position = new Vector3(UnityEngine.Random.Range(minX, maxX), UnityEngine.Random.Range(minY, maxY), 0);
+        go.transform.position = new Vector3(
+            UnityEngine.Random.Range(minX, maxX),
+            UnityEngine.Random.Range(minY, maxY),
+            0
+        );
         pps.setAndUpdatePP();
     }
 

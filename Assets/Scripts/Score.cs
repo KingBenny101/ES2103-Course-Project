@@ -14,9 +14,12 @@ public class Score
     public float TOTAL_EMISSION;
     public float INITIAL_EMISSION;
 
-
-
-    public Score(float energyThreshold,float costThreshold, float emissionThreshold, float initialEmission)
+    public Score(
+        float energyThreshold,
+        float costThreshold,
+        float emissionThreshold,
+        float initialEmission
+    )
     {
         this.ENERGY_THRESHOLD = energyThreshold;
         this.COST_THRESHOLD = costThreshold;
@@ -27,8 +30,6 @@ public class Score
         this.TOTAL_AREA = 0f;
         this.TOTAL_EMISSION = initialEmission;
         this.INITIAL_EMISSION = initialEmission;
-
-     
     }
 
     public void addPowerPlant(PowerPlant pp)
@@ -47,7 +48,7 @@ public class Score
         this.TOTAL_ENERGY += ppEnergy;
         this.TOTAL_COST -= ppCost;
         this.TOTAL_AREA += ppArea;
-        this.TOTAL_EMISSION += ppEmission;
+        this.TOTAL_EMISSION += (ppEmission);
     }
 
     public void delPowerPlant(PowerPlant pp)
@@ -66,7 +67,7 @@ public class Score
         this.TOTAL_ENERGY -= ppEnergy;
         this.TOTAL_COST += ppCost;
         this.TOTAL_AREA -= ppArea;
-        this.TOTAL_EMISSION -= ppEmission;
+        this.TOTAL_EMISSION -= (ppEmission);
     }
 
     public float calculateScore()
@@ -79,21 +80,16 @@ public class Score
         var men = this.ENERGY_THRESHOLD;
 
         this.TOTAL_SCORE =
-            2250*((te)/(men)) 
-            + 1500 *((mc-tc)/(mc))
-            + 1250 *((me-tem)/(me));
+            2250 * ((te) / (men)) + 1500 * ((mc - tc) / (mc)) + 1250 * ((me - tem) / (me));
         return this.TOTAL_SCORE;
     }
 
-
     public bool isCompleted()
     {
-        if (this.TOTAL_ENERGY >= this.ENERGY_THRESHOLD )
+        if (this.TOTAL_ENERGY >= this.ENERGY_THRESHOLD)
         {
             return true;
         }
         return false;
     }
-
-
 }
