@@ -54,11 +54,11 @@ public class PowerPlantDetailsController
                 break;
 
             case 5:
-                ppType = "Thermal";
+                ppType = "Nuclear";
                 break;
 
             case 6:
-                ppType = "Nuclear";
+                ppType = "Thermal";
                 break;
         }
         int inx;
