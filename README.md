@@ -1,7 +1,9 @@
 # Advent of Clean Energy
 - An interactive game made in Unity to create awarness about sustainable development and clean energy solutions.
 ## To play the game
-- Download the latest release from [here](www.google.com)
+- Download the latest release from [here](https://github.com/benstindavis/ACE/releases/tag/v1.1.0)
+- If the download fails, disable antivirus and try again.
+- Run the setup file and then follow the instructions.
 ## Steps to build project on your own
 - Clone repository 
 
