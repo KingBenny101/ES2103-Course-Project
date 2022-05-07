@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class PowerPlantDetailsController
 {
@@ -425,7 +426,7 @@ public class PowerPlantDetailsController
 
         GameObject scoreBoardScore = this.GRID.SCOREBOARD_SCORE.transform.GetChild(0).gameObject;
         scoreBoardScore.GetComponent<UnityEngine.UI.Text>().text =
-            $@"{n}Energy{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_ENERGY)}/{this.GRID.SCORE.ENERGY_THRESHOLD}{n}{n}Cost{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_COST)}/{this.GRID.SCORE.COST_THRESHOLD}{n}{n}Emission{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_EMISSION)}/{this.GRID.SCORE.EMISSION_THRESHOLD}";
+            $@"{n}Energy{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_ENERGY)}/{this.GRID.SCORE.ENERGY_THRESHOLD}{n}{n}Cost{n}{Mathf.Ceil(this.GRID.SCORE.TOTAL_COST)}/{this.GRID.SCORE.COST_THRESHOLD}{n}{n}Emission{n}{Decimal.Round((decimal)this.GRID.SCORE.TOTAL_EMISSION,2)}/{this.GRID.SCORE.EMISSION_THRESHOLD}";
 
         GameObject powerPlantPreview = this.SCOREBOARD.transform.GetChild(1).gameObject;
         switch (id)

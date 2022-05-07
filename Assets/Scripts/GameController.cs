@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -240,7 +241,7 @@ public class GameController : MonoBehaviour
         scoreDisplay.GetComponent<UnityEngine.UI.Text>().text =
             $@"YOUR SCORE{n}{Mathf.Ceil(this.grid.SCORE.TOTAL_SCORE)}";
         tableDisplay.GetComponent<UnityEngine.UI.Text>().text =
-            $@"Money spent{n}INR {Mathf.Ceil(this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST)} Cr{n}{n}LAND Occupied{n}{Mathf.Ceil(this.grid.SCORE.TOTAL_AREA)} Acre{n}{n}Emission Rate{n}{Mathf.Ceil(this.grid.SCORE.TOTAL_EMISSION)} KG/3.6S";
+            $@"Money spent{n}INR {Mathf.Ceil(this.grid.SCORE.COST_THRESHOLD - this.grid.SCORE.TOTAL_COST)} Cr{n}{n}LAND Occupied{n}{Mathf.Ceil(this.grid.SCORE.TOTAL_AREA)} Acre{n}{n}Emission Rate{n}{Decimal.Round((decimal)this.grid.SCORE.TOTAL_EMISSION)} KG/3.6S";
     }
 
     public void CreateNewPowerPlant(int choice)
@@ -374,7 +375,7 @@ public class GameController : MonoBehaviour
         float minX = go.GetComponent<Dragger>().Min.x;
         float maxY = go.GetComponent<Dragger>().Max.y;
         float minY = go.GetComponent<Dragger>().Min.y;
-        go.transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
+        go.transform.position = new Vector3(UnityEngine.Random.Range(minX, maxX), UnityEngine.Random.Range(minY, maxY), 0);
         pps.setAndUpdatePP();
     }
 
